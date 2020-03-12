@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+.formcolor {
+    background-color:#2F75E9;
+    color:white;
+}
+
+.formbutton {
+    background-color: white;
+    color: #2F75E9;
+}
+
+.formlabelcolor {
+    color:white;
+}
+
+.navbarcolor {
+    background-color: #2F75E9;
+}
+
+.fill { 
+    min-height: 100%;
+    height: 100%;
+}
+
+.robotofont{
+    font-family: 'Roboto', sans-serif;
+}
+
+
+
+

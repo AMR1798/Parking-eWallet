@@ -9,19 +9,22 @@
                 </div>
                 <div class="align-self-center text-center col-sm-1"></div>
                 <div class="align-self-center text-center col-sm-7">
-                    <h1>Search Your Car</h1>
+                    <h1 style="color:white"><strong>Search Your Car</strong></h1>
                     <form action="/search" method="POST" role="search">
                         @csrf
-                        <div class="input-group">
-                        <input class="form-control" placeholder="Search . . ." name="plate" id="ed-srch-term" type="text">
-                        <div class="input-group-btn">
-                        <button type="submit" id="searchbtn">
-                            <i class="fas fa-search"></i></button>
-                        </div>
+                        <div class="input-group mb-3 ">
+                            <input type="text" name="plate" class="form-control" placeholder="Vehicle License Plate"
+                                aria-label="Vehicle License Plate" aria-describedby="submit" style="border-radius: 50px 0 0 50px;min-height:50px;
+                                height: auto;">
+                            <div class="input-group-append">
+                                <button
+                                    class="btn btn-rounded btn-large blue-gradient m-0 px-3 py-2 z-depth-0 waves-effect"
+                                    type="submit" id="submit">Search</button>
+                            </div>
                         </div>
                         </form>
                       <br>
-                      <strong>Having a problem?</strong>  <a href="/problem"><button class="btn btn-rounded btn-light"> <strong>Click Here</strong> </button></a>
+                      <strong style="color:white">Having a problem?</strong>  <a href="/problem"><button class="btn btn-rounded btn-light"> <strong>Click Here</strong> </button></a>
                 </div>
             </div>
         </div>
@@ -30,7 +33,7 @@
         <div class="container position-relative">
             <div class="row">
                 <div class="align-self-center text-center col-sm-6">
-                    <h2> Parkey is a parking system that combines the use of license plate recognition and eWallet to eliminate the need of physical ticket and cash </h2>
+                    <h2> Parkey is an innovative application that recognizes license plate upon vehicle entry and exit of your facility in seconds. As a fully integrated license plate recognition application and parking system, it provides faster and easier way for user to access parking information and  make payment. </h2>
                 </div>
                 <div class="align-self-center text-center col-sm-6">
                     How does it work? >

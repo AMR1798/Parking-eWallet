@@ -21,7 +21,7 @@
                         <!-- Name -->
                         <div class="md-form mt-0">
                             <input type="text" id="name" class="form-control @error('name') is-invalid @enderror"
-                                name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                name="name" value="{{ old('name') }}" required autocomplete="name" autofocus style="color: white">
                             <label for="name" style="color:white">Full Name</label>
                             @error('name')
                             <span class="invalid-feedback" role="alert">
@@ -33,7 +33,7 @@
                         <!-- E-mail -->
                         <div class="md-form mt-0">
                             <input type="email" id="email" class="form-control @error('email') is-invalid @enderror"
-                                name="email" value="{{ old('email') }}" required autocomplete="email">
+                                name="email" value="{{ old('email') }}" required autocomplete="email" style="color: white">
                             <label for="email" style="color:white">{{ __('E-Mail Address') }}</label>
 
                             @error('email')
@@ -47,7 +47,7 @@
                         <div class="md-form">
                             <input type="password" id="password"
                                 class="form-control @error('password') is-invalid @enderror" name="password" required
-                                autocomplete="new-password" aria-describedby="materialRegisterFormPasswordHelpBlock">
+                                autocomplete="new-password" aria-describedby="materialRegisterFormPasswordHelpBlock" style="color: white">
                             <label for="password" style="color:white">{{ __('Password') }}</label>
 
                             @error('password')
@@ -64,7 +64,7 @@
                         <div class="md-form">
                             <input type="password" id="password-confirm" class="form-control"
                                 name="password_confirmation" required autocomplete="new-password"
-                                aria-describedby="materialRegisterFormPasswordHelpBlock">
+                                aria-describedby="materialRegisterFormPasswordHelpBlock" style="color: white">
                             <label for="password-confirm" style="color:white">{{ __('Confirm Password') }}</label>
 
                         </div>

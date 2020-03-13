@@ -20,7 +20,7 @@
                         <!-- Email -->
                         <div class="md-form">
                             <input type="email" id="email" class="form-control @error('email') is-invalid @enderror"
-                                name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                name="email" value="{{ old('email') }}" required autocomplete="email" autofocus style="color: white">
                             <label style="color:white" for="email">E-mail</label>
                             @error('email')
                             <span class="invalid-feedback" role="alert">
@@ -33,7 +33,7 @@
                         <div class="md-form">
                             <input type="password" id="password"
                                 class="form-control @error('password') is-invalid @enderror" name="password" required
-                                autocomplete="current-password">
+                                autocomplete="current-password" style="color: white">
                             <label style="color:white" for="password">Password</label>
                             @error('password')
                             <span class="invalid-feedback" role="alert">

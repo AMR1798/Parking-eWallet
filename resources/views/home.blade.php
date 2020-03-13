@@ -43,7 +43,9 @@
                                         <button type="button" class="btn winter-neva-gradient btn-rounded btn-sm"><strong>Add Balance</strong></button>
                                     </div>
                                     <div class="col-sm">
+                                        <a href="/addvehicle" style="color:black">
                                         <button type="button" class="btn winter-neva-gradient btn-rounded btn-sm"><strong>Add Vehicle</strong></button>
+                                        </a>
                                     </div>
                                 </div>
                             </div>

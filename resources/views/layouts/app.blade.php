@@ -19,6 +19,7 @@
     <script src="{{ asset('js/bootstrap.js') }}" defer></script>
     <script type="text/javascript" src="{{ asset('js/fullpage.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/mdb.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
 
     <!-- Fonts -->
@@ -76,7 +77,7 @@
                         @endif
                         @else
                         <li class="nav-item dropdown">
-                            <button type="button" class="btn btn-primary btn-rounded dropdown-toggle"
+                            <button type="button" class="btn cloudy-knoxville-gradient btn-rounded dropdown-toggle"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </button>

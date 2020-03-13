@@ -37,7 +37,7 @@
 
 <body>
     <div id="app">
-        <nav class="navbar fixed-top navbar-expand-md navbar-light">
+        <nav class="navbar text-center fixed-top navbar-expand-md navbar-light">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="/img/logo.png" style="max-height:45px" class="d-inline-block align-top" alt="">

@@ -84,6 +84,30 @@ class PlateController extends Controller
         //
     }
 
+    //This function is to remove the plate from user's account
+    //This will not remove the plate in the database
+    public function remove($plateid)
+    {
+        $plate = Plate::find($plateid);
+        //if for whatever reason the user try to use the delete license plate link with random number, this will stop it.
+        if(!$plate==NULL){
+            //check user_id is the same as the user_id binded to the plate
+            //this is to make sure only the owner of the account can unbind the license plate from the account
+            if ($plate->user_id == Auth::user()->id){
+                //confirmed the plate is owned by the current user
+                $plate->user_id = NULL;
+                $plate->save();
+                return redirect('home')->with('success','Vehicle license plate is removed from your account');
+            }else{
+                //plate is not owned by the user
+                return redirect('home')->with('error', 'Unable to delete license plate. The license plate is not owned by this account');
+            }
+        }else{
+            return redirect('home')->with('error', 'The vehicle license plate you are trying to remove is not in the system');
+        }
+
+    }
+
     public function addPlate(Request $request)
     {
         $plate = $request->input('plate');

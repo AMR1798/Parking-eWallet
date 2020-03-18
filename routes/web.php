@@ -46,6 +46,8 @@ Route::post('/addvehicle', 'PlateController@addPlate');
 
 Auth::routes();
 
+Route::get('/transaction', 'LogController@index')->middleware('auth');
+Route::get('/remove/{plateid}', 'PlateController@remove')->middleware('auth');
 Route::get('/addvehicle', function () {
     return view('addvehicle');
 })->middleware('auth');

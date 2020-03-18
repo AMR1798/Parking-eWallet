@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Log extends Model
 {
-    public function plates()
+    public function plate()
     {
         return $this->belongsTo('App\Plate');
     }

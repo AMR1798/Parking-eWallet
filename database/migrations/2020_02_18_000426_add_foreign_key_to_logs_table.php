@@ -14,8 +14,8 @@ class AddForeignKeyToLogsTable extends Migration
     public function up()
     {
         Schema::table('logs', function (Blueprint $table) {
-            $table->bigInteger('license_id')->unsigned()->index()->nullable();
-            $table->foreign('license_id')->references('id')->on('plates')->onUpdate('cascade')->onDelete('cascade');
+            $table->bigInteger('plate_id')->unsigned()->index()->nullable();
+            $table->foreign('plate_id')->references('id')->on('plates')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
@@ -27,8 +27,8 @@ class AddForeignKeyToLogsTable extends Migration
     public function down()
     {
         Schema::table('logs', function (Blueprint $table) {
-            $table->dropForeign('license_id');
-            $table->dropColumn('license_id');
+            $table->dropForeign('plate_id');
+            $table->dropColumn('plate_id');
         });
     }
 }

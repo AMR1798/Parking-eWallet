@@ -1,9 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center vertical-center ">
-        <div class="col-md-8">
+
+
+<div class="container align-middle" style="height:70vh">
+    <div class="row justify-content-center vertical-center my-auto position-relative" style="height:100%">
+        <div class="col-md-8 text-center my-auto">
             <div class="container position-relative">
                 <div class="row">
                     <div class="align-self-center text-center col-sm-4 "><img

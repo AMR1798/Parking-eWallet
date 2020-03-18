@@ -36,15 +36,24 @@
                             <div class="container-fluid">
                                 <div class="row">
                                     <div class="col-sm">
-                                        <button type="button" class="btn winter-neva-gradient btn-rounded btn-sm"><strong>View
-                                                Transaction</strong></button>
+                                        <a href="/transaction" style="color:black">
+                                            <button type="button"
+                                                class="btn winter-neva-gradient btn-rounded btn-sm"><strong>View
+                                                    Transaction</strong></button>
+                                        </a>
                                     </div>
                                     <div class="col-sm">
-                                        <button type="button" class="btn winter-neva-gradient btn-rounded btn-sm"><strong>Add Balance</strong></button>
+
+                                        <button type="button"
+                                            class="btn winter-neva-gradient btn-rounded btn-sm"><strong>Add
+                                                Balance</strong></button>
+
                                     </div>
                                     <div class="col-sm">
                                         <a href="/addvehicle" style="color:black">
-                                        <button type="button" class="btn winter-neva-gradient btn-rounded btn-sm"><strong>Add Vehicle</strong></button>
+                                            <button type="button"
+                                                class="btn winter-neva-gradient btn-rounded btn-sm"><strong>Add
+                                                    Vehicle</strong></button>
                                         </a>
                                     </div>
                                 </div>
@@ -61,9 +70,41 @@
                         <div class="card" style="margin-bottom: 5px">
                             <div class="card-body">
                                 <h5><i class="fas fa-car-alt"></i> {{$plate->license_plate}} </h5>
-                                <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modalConfirmDelete{{$plate->id}}">Delete</button>
                             </div>
                         </div>
+                        <!--Modal: modalConfirmDelete-->
+                        <div class="modal fade" id="modalConfirmDelete{{$plate->id}}" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-sm modal-notify modal-danger" role="document">
+                                <!--Content-->
+                                <div class="modal-content text-center">
+                                    <!--Header-->
+                                    <div class="modal-header d-flex justify-content-center">
+                                        <p class="heading">Are you sure?</p>
+                                    </div>
+
+                                    <!--Body-->
+                                    <div class="modal-body">
+
+                                        <i class="fas fa-times fa-4x animated rotateIn"></i>
+                                        <p><strong>This will remove {{$plate->license_plate}} from your account.</strong></p>
+
+                                        <p>The license plate will still need to be binded into an account with sufficient eWallet balance to exit parking</p>
+                                        
+                                    </div>
+
+                                    <!--Footer-->
+                                    <div class="modal-footer flex-center">
+                                        <a href="/remove/{{$plate->id}}" class="btn  btn-outline-danger">Yes</a>
+                                        <a type="button" class="btn  btn-danger waves-effect"
+                                            data-dismiss="modal">No</a>
+                                    </div>
+                                </div>
+                                <!--/.Content-->
+                            </div>
+                        </div>
+                        <!--Modal: modalConfirmDelete-->
                         @endforeach
 
                     </div>
@@ -72,4 +113,25 @@
         </div>
     </div>
 </div>
+@if (session()->get('success'))
+<script>
+    Swal.fire({
+        title: 'Success!',
+        text: '{{session()->get('success')}}',
+        icon: 'success',
+        confirmButtonText: 'OK'
+    })
+
+</script>
+@elseif (session()->get('error'))
+<script>
+    Swal.fire({
+        title: 'Error',
+        text: '{{session()->get('error')}}',
+        icon: 'error',
+        confirmButtonText: 'OK'
+    })
+
+</script>
+@endif
 @endsection

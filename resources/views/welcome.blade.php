@@ -5,7 +5,7 @@
     <div class="section section-main">
         <div class="container position-relative">
             <div class="row">
-                <div class="align-self-center text-center col-sm-4"><img style="max-height:45%;max-width:70%" src="/img/car.svg">
+                <div class="align-self-center text-center col-sm-4"><img class="animated zoomInDown" style="max-height:45%;max-width:70%" src="/img/car.svg">
                 </div>
                 <div class="align-self-center text-center col-sm-1"></div>
                 <div class="align-self-center text-center col-sm-7">

@@ -32,7 +32,10 @@
   text: '{{$success}}',
   icon: 'success',
   confirmButtonText: 'OK'
-})
+}).then(function() {
+    // Redirect the user
+    window.location.href = "/home";
+    })
 </script>
 @elseif (!empty($error))
 <script>

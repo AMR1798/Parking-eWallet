@@ -11,7 +11,7 @@ class Plate extends Model
         return $this->belongsTo('App\User');
     }
 
-    public function log()
+    public function logs()
     {
         return $this->hasMany('App\Log');
     }

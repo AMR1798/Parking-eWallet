@@ -36,13 +36,24 @@ Route::get('/notfound', function () {
     return view('notfound');
 });
 
+Route::get('/dummybank', function () {
+    return view('bank');
+})->name('dummybank');
+
 
 //development route habis sini, remove or u noob 
 
+//dummy bank route
+Route::post('/bank', 'DummyBankController@bankTransaction');
+Route::get('/bankaccept', 'BalanceController@accept')->name('transactionaccepted');
 
+//entah
 Route::post('/search', 'LogController@search');
 
 Route::post('/addvehicle', 'PlateController@addPlate');
+
+Route::post('/addbalance', 'BalanceController@addbalance');
+
 
 Auth::routes();
 
@@ -50,6 +61,10 @@ Route::get('/transaction', 'LogController@index')->middleware('auth');
 Route::get('/remove/{plateid}', 'PlateController@remove')->middleware('auth');
 Route::get('/addvehicle', function () {
     return view('addvehicle');
+})->middleware('auth');
+
+Route::get('/addbalance', function () {
+    return view('addbalance');
 })->middleware('auth');
 
 Route::get('/home', 'HomeController@index')->name('home');

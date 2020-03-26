@@ -43,11 +43,11 @@
                                         </a>
                                     </div>
                                     <div class="col-sm">
-
-                                        <button type="button"
-                                            class="btn winter-neva-gradient btn-rounded btn-sm"><strong>Add
-                                                Balance</strong></button>
-
+                                        <a href="/addbalance" style="color:black">
+                                            <button type="button"
+                                                class="btn winter-neva-gradient btn-rounded btn-sm"><strong>Add
+                                                    Balance</strong></button>
+                                        </a>
                                     </div>
                                     <div class="col-sm">
                                         <a href="/addvehicle" style="color:black">
@@ -70,13 +70,15 @@
                         <div class="card" style="margin-bottom: 5px">
                             <div class="card-body">
                                 <h5><i class="fas fa-car-alt"></i> {{$plate->license_plate}} </h5>
-                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modalConfirmDelete{{$plate->id}}">Delete</button>
+                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                                    data-target="#modalConfirmDelete{{$plate->id}}">Delete</button>
                             </div>
                         </div>
                         <!--Modal: modalConfirmDelete-->
                         <div class="modal fade" id="modalConfirmDelete{{$plate->id}}" tabindex="-1" role="dialog"
                             aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered modal-sm modal-notify modal-danger" role="document">
+                            <div class="modal-dialog modal-dialog-centered modal-sm modal-notify modal-danger"
+                                role="document">
                                 <!--Content-->
                                 <div class="modal-content text-center">
                                     <!--Header-->
@@ -88,10 +90,12 @@
                                     <div class="modal-body">
 
                                         <i class="fas fa-times fa-4x animated rotateIn"></i>
-                                        <p><strong>This will remove {{$plate->license_plate}} from your account.</strong></p>
+                                        <p><strong>This will remove {{$plate->license_plate}} from your
+                                                account.</strong></p>
 
-                                        <p>The license plate will still need to be binded into an account with sufficient eWallet balance to exit parking</p>
-                                        
+                                        <p>The license plate will still need to be binded into an account with
+                                            sufficient eWallet balance to exit parking</p>
+
                                     </div>
 
                                     <!--Footer-->

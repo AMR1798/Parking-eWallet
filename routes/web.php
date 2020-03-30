@@ -40,6 +40,9 @@ Route::get('/dummybank', function () {
     return view('bank');
 })->name('dummybank');
 
+Route::get('/admin', function () {
+    return view('dashboard');
+});
 
 //development route habis sini, remove or u noob 
 

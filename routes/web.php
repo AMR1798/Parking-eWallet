@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//All of these route for development, remove when done ya future ammar
+//All of these route for development, remove before publishing pls :(
 Route::get('/testlayout', function () {
     return view('layouts.layout1');
 });
@@ -40,9 +40,15 @@ Route::get('/dummybank', function () {
     return view('bank');
 })->name('dummybank');
 
-Route::get('/admin', function () {
-    return view('dashboard');
+Route::get('/fakeexit', 'LogController@fakeExitView');
+Route::post('/fakeexit', 'LogController@fakeExit');
+
+Route::get('/fakeentry', function () {
+    return view('fakeentry');
 });
+
+Route::post('/fakeentry', 'LogController@fakeEntry');
+
 
 //development route habis sini, remove or u noob 
 
@@ -71,3 +77,9 @@ Route::get('/addbalance', function () {
 })->middleware('auth');
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['middleware' => 'admin'], function () {
+    Route::get('/admin', 'LogController@adminview');
+});
+
+

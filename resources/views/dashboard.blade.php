@@ -3,8 +3,8 @@
 @section('content')
 
 <div class="row">
-    <div class="col-4">
-        <div class="card text-white purple-gradient mb-3" style="max-width: 20rem;">
+    <div class="col-sm-4">
+        <div class="card h-100 text-white purple-gradient mb-3" style="max-width: 20rem;">
             <div class="card-body text-left">
                 <h1><i class="fas fa-dollar-sign"></i></h1>
                 <h5 class="card-title">Total Fee Today</h5>
@@ -13,27 +13,26 @@
             </div>
         </div>
     </div>
-    <div class="col-4">
-        <div class="card text-white blue-gradient mb-3" style="max-width: 20rem;">
+    <div class="col-sm-4">
+        <div class="card h-100 text-white blue-gradient mb-3" style="max-width: 20rem;">
             <div class="card-body text-left">
                 <h1><i class="fas fa-expand-alt"></i></h1>
-                <h5 class="card-title">Total Fee This Week</h5>
-                <p class="card-text text-white">Some quick example text to build on the panel title and make up the bulk
-                    of the panel's content.</p>
+                <h5 class="card-title">Total Fee This Month</h5>
+                <h3 class="card-title">{{$months[$currentmonth]['totalfee']}}</h3>
             </div>
         </div>
     </div>
-    <div class="col-4">
-        <div class="card text-white sunny-morning-gradient mb-3" style="max-width: 20rem;">
+    <div class="col-sm-4">
+        <div class="card h-100 text-white sunny-morning-gradient mb-3" style="max-width: 20rem;">
             <div class="card-body text-left">
                 <h1><i class="fas fa-street-view"></i></h1>
-                <h5 class="card-title">Parking Visitor This Week</h5>
-                <p class="card-text text-white">Some quick example text to build on the panel title and make up the bulk
-                    of the panel's content.</p>
+                <h5 class="card-title">Parking Visitor Today</h5>
+                <h3 class="card-title">{{$todaycount}}</h3>
             </div>
         </div>
     </div>
 </div>
+<br>
 <div class="row">
     <!-- Grid container -->
     <div class="container">
@@ -77,7 +76,21 @@
 
                     label: "Total Parking Visitor",
 
-                    data: [0, 65, 45, 65, 35, 65, 0],
+                    data: [
+                        {{$months['January']['countvisitor']}},
+                        {{$months['February']['countvisitor']}},
+                        {{$months['March']['countvisitor']}},
+                        {{$months['April']['countvisitor']}},
+                        {{$months['May']['countvisitor']}},
+                        {{$months['June']['countvisitor']}},
+                        {{$months['July']['countvisitor']}},
+                        {{$months['August']['countvisitor']}},
+                        {{$months['September']['countvisitor']}},
+                        {{$months['October']['countvisitor']}},
+                        {{$months['November']['countvisitor']}},
+                        {{$months['December']['countvisitor']}}
+
+                    ],
 
                     backgroundColor: gradientFill,
 

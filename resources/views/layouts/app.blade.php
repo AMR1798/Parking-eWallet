@@ -83,12 +83,15 @@
                             </button>
                             <div class="dropdown-menu dropdown-menu-center text-center">
                                 <a class="dropdown-item" href="/home"> Home </a>
+                                @if (Auth::user()->isAdmin == 1)
+                                <a class="dropdown-item" href="/admin"> Admin </a>
+                                @endif
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
                             </div>
-                            
+
 
 
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

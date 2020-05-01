@@ -33,6 +33,7 @@
     </div>
 </div>
 <br>
+<hr>
 <div class="row">
     <!-- Grid container -->
     <div class="container">

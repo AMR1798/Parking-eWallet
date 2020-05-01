@@ -21,7 +21,7 @@
                         </div>
                         <div class="card" style="margin-bottom: 5px">
                             <div class="card-body" >
-                                Entry Gate:
+                                Entry Gate: {{$gate}}
                             </div>
                         </div>
                         <div class="card" style="margin-bottom: 5px">

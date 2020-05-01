@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLogsTable extends Migration
+class AddGateColumnToLogs extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,8 @@ class CreateLogsTable extends Migration
      */
     public function up()
     {
-        Schema::create('logs', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->dateTime('entry')->nullable();
-            $table->string('status');
-            $table->dateTime('exittime')->nullable();
-            $table->timestamps();
+        Schema::table('logs', function (Blueprint $table) {
+            $table->string('gate')->nullable();
         });
     }
 
@@ -29,6 +25,8 @@ class CreateLogsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('logs');
+        Schema::table('logs', function (Blueprint $table) {
+            $table->dropColumn('gate');
+        });
     }
 }

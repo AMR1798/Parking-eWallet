@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLogsTable extends Migration
+class CreatePriceTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateLogsTable extends Migration
      */
     public function up()
     {
-        Schema::create('logs', function (Blueprint $table) {
+        Schema::create('price', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->dateTime('entry')->nullable();
-            $table->string('status');
-            $table->dateTime('exittime')->nullable();
+            $table->decimal('ticketPrice',9,2)->default('1.00');
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ class CreateLogsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('logs');
+        Schema::dropIfExists('price');
     }
 }

@@ -27,32 +27,8 @@ class LogController extends Controller
         //return $logs;
         $fees = [];
         //calculate fee(s) of each log and push into array
-        foreach($logs as $log){
-            $fee = 0;
-            $entrytime = strtotime($log->entry);
-            $entry = new DateTime(date('Y-m-d H:i:s',$entrytime));
-            $exittime = strtotime($log->exit);
-            $exit = new DateTime(date('Y-m-d H:i:s',$exittime));
-            //return $current;
-            //calculate duration
-            $interval = $entry->diff($exit);
-            $duration = $interval->format('%a Days %H Hours %I Minutes');
-            $day = intval($interval->format('%a'));
-            $hour = intval($interval->format('%H'));
-            $minute = intval($interval->format('%I'));
-
-            //calculate fee based on day(s)
-            $fee = $fee + ($day*24);
-            //calculate fee (hardcoded for RM1 for 1 Hours)
-            $fee = $fee+($hour*1);
-            //if minutes is more than 30, count as an hour
-            if($minute > 30 ){
-            $fee += 1;
-            }
-            array_push($fees,$fee);
-        }
         //return $fees;
-        return view('transaction', compact('logs','fees'));
+        return view('transaction', compact('logs'));
     }
 
     /**
@@ -192,7 +168,7 @@ class LogController extends Controller
             $logday = $logday->format('Y-m-d');
             if ($logyear == $year){
                 $logmonth =  new DateTime($log->entry);
-                $logmonthexit =  new DateTime($log->exit);
+                $logmonthexit =  new DateTime($log->exittime);
                 $logmonth = $logmonth->format('F');
                 $logmonthexit = $logmonthexit->format('F');
                 switch ($logmonth) {
@@ -321,7 +297,8 @@ class LogController extends Controller
                     $fee += 1;
                 }
                 $entry = $entry->format('Y/m/d H:i');
-                return view('found',compact('entry','plateid','duration', 'fee'));
+                $gate = $search->gate;
+                return view('found',compact('entry','plateid','duration', 'fee', 'gate'));
         }return view('notfound');
     }return view('notfound');
     }
@@ -364,7 +341,7 @@ class LogController extends Controller
         }
         $textexit = $exit->format('Y-m-d H:i:s');
         //return $fee;
-        $log->exit = $textexit;
+        $log->exittime = $textexit;
         $log->fee = $fee;
         $log->status = "EXIT";
         $log->save();
@@ -394,5 +371,14 @@ class LogController extends Controller
         $log->save();
         return redirect('/fakeentry');
         
+    }
+
+    public function viewAll()
+    {
+        
+        
+        $logs = Log::with('plate.user')->paginate(10);
+        //return $logs;
+        return view('viewlogs', compact('logs'));
     }
 }

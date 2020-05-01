@@ -39,10 +39,10 @@
                                 <th scope="row">{{$i++}}</th>
                                 <td>{{$log->plate->license_plate}}</td>
                                 <td>{{$log->entry}}</td>
-                                <td>{{$log->exit}}</td>
-                                <td>Location</td>
+                                <td>{{$log->exittime}}</td>
+                                <td>{{$log->gate}}</td>
                                 <td>
-                                    {{$fees[$j++]}}
+                                    RM {{$log->fee}}
                                 
                                 </td>
                             </tr>

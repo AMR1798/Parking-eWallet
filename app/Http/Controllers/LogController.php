@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use DateTime;
 use Auth;
+use App\Price;
 class LogController extends Controller
 {
     /**
@@ -23,7 +24,7 @@ class LogController extends Controller
         $logs = Log::whereHas('plate', function ($query) {
             $match = ['user_id' => Auth::user()->id, 'status' => 'EXIT'];
             $query->where($match);
-        })->with('plate')->get();
+        })->with('plate')->orderBy('exittime', 'DESC')->paginate(5);
         //return $logs;
         $fees = [];
         //calculate fee(s) of each log and push into array
@@ -156,6 +157,7 @@ class LogController extends Controller
         $now = new DateTime();
         $today = $now;
         $todaycount = 0;
+        $todayfee = 0;
         //count visitor for current year and sort by month
         foreach ($logs as $log) {
             //check current year
@@ -166,6 +168,8 @@ class LogController extends Controller
             $logyear = $logyear->format('Y');
             $logday = new DateTime($log->entry);
             $logday = $logday->format('Y-m-d');
+            $logdayexit = new DateTime($log->exittime);
+            $logdayexit = $logdayexit->format('Y-m-d');
             if ($logyear == $year){
                 $logmonth =  new DateTime($log->entry);
                 $logmonthexit =  new DateTime($log->exittime);
@@ -250,13 +254,16 @@ class LogController extends Controller
                     default:    
                 }
                 if ($day == $logday){
-                    $todaycount++;
+                    $todaycount++; 
+                }
+                if ($day == $logdayexit){
+                    $todayfee += $log->fee; 
                 }
             }
             
         }
         $currentmonth = $now->format('F');
-        return view('dashboard',compact('months','todaycount','currentmonth'));
+        return view('dashboard',compact('months','todaycount','currentmonth', 'todayfee'));
         
     }
 
@@ -266,7 +273,7 @@ class LogController extends Controller
         $fee = 0;
         date_default_timezone_set("Asia/Kuala_Lumpur");
         $search = $request->get('plate');
-        
+        $price = Price::find(1)->first();
         //dd($request->get('plate'));
 
         //find the id of the license plate in the database
@@ -287,14 +294,16 @@ class LogController extends Controller
                 $day = intval($interval->format('%a'));
                 $hour = intval($interval->format('%H'));
                 $minute = intval($interval->format('%I'));
-                //return $day;
+                //return $hour;
                 //calculate fee based on day(s)
-                $fee = $fee + ($day*24);
-                //calculate fee (hardcoded for RM1 for 1 Hours)
-                $fee = $fee+($hour*1);
+                $fee = $fee + ($day*$price->maxHour);
+                //calculate fee for first hour
+                $fee = $fee+(1*$price->firstHour);
+                //calculate fee for subsequent hour
+                $fee = $fee+(--$hour*$price->nextHour);
                 //if minutes is more than 30, count as an hour
                 if($minute > 30 ){
-                    $fee += 1;
+                    $fee += $price->nextHour;
                 }
                 $entry = $entry->format('Y/m/d H:i');
                 $gate = $search->gate;
@@ -319,6 +328,9 @@ class LogController extends Controller
         date_default_timezone_set("Asia/Kuala_Lumpur");
        $id = $request->get('id');
        $log = Log::find($id);
+       $plate_id = $log->plate_id;
+       //return $plate_id;
+       $price = Price::find(1)->first();
        $exit = new DateTime(date("Y-m-d H:i:s"));
         $fee = 0;
         //return $exit;
@@ -332,20 +344,38 @@ class LogController extends Controller
         $minute = intval($interval->format('%I'));
         //return $day;    
         //calculate fee based on day(s)
-        $fee = $fee + ($day*24);
-        //calculate fee (hardcoded for RM1 for 1 Hours)
-        $fee = $fee+($hour*1);
+        $fee = $fee + ($day*$price->maxHour);
+        //calculate fee for first hour
+        $fee = $fee+(1*$price->firstHour);
+        //calculate fee for subsequent hour
+        $fee = $fee+(--$hour*$price->nextHour);
         //if minutes is more than 30, count as an hour
         if($minute > 30 ){
-            $fee += 1;
+        $fee += $price->nextHour;
         }
         $textexit = $exit->format('Y-m-d H:i:s');
         //return $fee;
-        $log->exittime = $textexit;
-        $log->fee = $fee;
-        $log->status = "EXIT";
-        $log->save();
-        return redirect('/fakeexit');
+        $plate = Plate::find($plate_id);
+        //return $plate->license_plate;
+        if($plate->user_id != NULL){
+            //return "hey";
+            $user = User::find($plate->user_id);
+            //return $user->balance;
+            if($user->balance > $fee){
+                $user->balance -= $fee;
+                $user->save();
+                $log->exittime = $textexit;
+                $log->fee = $fee;
+                $log->status = "EXIT";
+                $log->gate = "Simulation";
+                $log->save();
+                return redirect('/fakeexit')->with('success', 'Vehicle exit simulation : success');
+            }else{
+                return redirect('/fakeexit')->with('error', 'account balance not enough!');
+            }
+        }else{
+            return redirect('/fakeexit')->with('error', 'Plate not registered to a user!');
+        }
         
     }
     public function fakeEntry(Request $request)
@@ -377,7 +407,15 @@ class LogController extends Controller
     {
         
         
-        $logs = Log::with('plate.user')->paginate(10);
+        $logs = Log::with('plate.user')->orderBy('id', 'DESC')->paginate(10);
+        //return $logs;
+        return view('viewlogs', compact('logs'));
+    }
+
+    public function viewAllFilter($filter)
+    {
+        $match = ['exit' => $request->get('plate')];
+        $logs = Log::with('plate.user')->where()->orderBy('id', 'DESC')->paginate(10);
         //return $logs;
         return view('viewlogs', compact('logs'));
     }

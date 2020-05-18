@@ -30,13 +30,65 @@
         </div>
     </div>
     <div class="section">
-        <div class="container position-relative">
-            <div class="row">
-                <div class="align-self-center text-center col-sm-6">
-                    <h2> Parkey is an innovative application that recognizes license plate upon vehicle entry and exit of your facility in seconds. As a fully integrated license plate recognition application and parking system, it provides faster and easier way for user to access parking information and  make payment. </h2>
+        <div class="slide">
+            <div class="container position-relative">
+                <div class="row">
+                    <div class="align-self-center text-center col-sm-12">
+                        <div class="container">
+                        <p style="font-size:1.3em"> Parkey is an innovative application that recognizes license plate upon vehicle entry and exit of your facility in seconds. As a fully integrated license plate recognition application and parking system, it provides faster and easier way for user to access parking information and  make payment. </p>
+                        </div>
+                    </div>
                 </div>
-                <div class="align-self-center text-center col-sm-6">
-                    How does it work? >
+                <br>
+                <div class="row">
+                    <div class="align-self-center text-center col-sm-12">
+                        How does it work? >
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slide">
+            <div class="container position-relative">
+                <div class="row">
+                    <div class="align-self-center text-center col-sm-12">
+                        <h3> License plate recognition camera module will scan your vehicle license plate </h3>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="align-self-center text-center col-sm-12">
+                        <img style="width:50%;height:auto" src="/img/parkey1.png">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slide">
+            <div class="container position-relative">
+                <div class="row">
+                    <div class="align-self-center text-center col-sm-12">
+                        <h3> It will send the recognized license plate to the database </h3>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="align-self-center text-center col-sm-12">
+                        <img style="width:50%;height:auto" src="/img/parkey2.png">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slide">
+            <div class="container position-relative">
+                <div class="row">
+                    <div class="align-self-center text-center col-sm-12">
+                        <h3> You are able to check your parking information through parkey website </h3>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="align-self-center text-center col-sm-12">
+                        <img style="width:50%;height:auto" src="/img/parkey3.png">
+                    </div>
                 </div>
             </div>
         </div>

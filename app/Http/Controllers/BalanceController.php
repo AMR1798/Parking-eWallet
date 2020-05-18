@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use Session;
 use App\User;
+use App\paymentlog;
 class BalanceController extends Controller
 {
     public function __construct()
@@ -31,11 +32,17 @@ class BalanceController extends Controller
     public function accept()
     {
         //this is when dummybank accept transaction
+        $bankname = Session::get('bankname');
         $fund = Session::get('fund');
         //return $fund;
         $user = User::find(Auth::user()->id);
         $user->balance = $user->balance + $fund;
         $user->save();
+        $paylog = new paymentlog;
+        $paylog->user_id = Auth::user()->id;
+        $paylog->fee = $fund;
+        $paylog->bankname = $bankname;
+        $paylog->save();
         return redirect('/home')->with('success','Your eWallet balance fund has been successfully added!');
     }
 }

@@ -68,6 +68,7 @@ Auth::routes();
 
 Route::get('/transaction', 'LogController@index')->middleware('auth');
 Route::get('/remove/{plateid}', 'PlateController@remove')->middleware('auth');
+Route::get('/paymentlogs', 'PaymentlogController@show')->middleware('auth');
 Route::get('/addvehicle', function () {
     return view('addvehicle');
 })->middleware('auth');
@@ -81,6 +82,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => 'admin'], function () {
     Route::get('/admin', 'LogController@adminview');
     Route::get('/viewlogs', 'LogController@viewAll');
+    Route::get('/pricing', 'PriceController@index');
+    Route::put('/setprice', 'PriceController@update');
 });
 
 

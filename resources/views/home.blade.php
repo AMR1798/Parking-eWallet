@@ -56,6 +56,12 @@
                                                     Vehicle</strong></button>
                                         </a>
                                     </div>
+                                    <div class="col-sm">
+                                        <a href="/paymentlogs" style="color:black">
+                                            <button type="button"
+                                                class="btn winter-neva-gradient btn-rounded btn-sm"><strong>View Payment</strong></button>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
 

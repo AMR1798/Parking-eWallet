@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePriceTable extends Migration
+class CreatePaymentlogsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,13 @@ class CreatePriceTable extends Migration
      */
     public function up()
     {
-        Schema::create('price', function (Blueprint $table) {
+        Schema::create('paymentlogs', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->decimal('ticketPrice',9,2)->default('1.00');
+            $table->bigInteger('user_id')->unsigned()->index()->nullable();
+            $table->decimal('fee',9,2)->default('0.00');
+            $table->string('bankname');
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
@@ -27,6 +30,6 @@ class CreatePriceTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('price');
+        Schema::dropIfExists('paymentlogs');
     }
 }

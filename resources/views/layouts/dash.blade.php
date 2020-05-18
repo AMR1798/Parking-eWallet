@@ -47,7 +47,7 @@
                 <!-- Logo -->
                 <li>
                     <div class="logo-wrapper waves-light">
-                        <a href="#"><img src="img/logo.png" class="img-fluid flex-center"></a>
+                        <a href="/admin"><img src="img/logo.png" class="img-fluid flex-center"></a>
                     </div>
                 </li>
                 <!--/. Logo -->
@@ -60,15 +60,15 @@
                                 Dashboard<i class="fas fa-angle-down rotate-icon"></i></a>
                             <div class="collapsible-body">
                                 <ul class="list-unstyled">
-                                    <li><a href="#" class="waves-effect">entah</a>
+                                    <li><a href="/admin" class="waves-effect">Overview</a>
                                     </li>
-                                    <li><a href="#" class="waves-effect">entah part 2</a>
+                                    <li><a href="/viewlogs" class="waves-effect">Parking Logs</a>
                                     </li>
                                 </ul>
                             </div>
                         </li>
-                        <li><a class="waves-effect"><i class="fas fa-cog"></i>
-                                Configure System</a>
+                        <li><a class="waves-effect" href="/pricing"><i class="fas fa-cog"></i>
+                                Configure Price</a>
                             
                         </li>
                     </ul>
@@ -140,7 +140,7 @@
     <!--Main layout-->
     <main>
 
-        <div class="container-fluid text-center" style="margin-top:2%">
+        <div class="container-fluid" style="margin-top:2%">
             @yield('content')
         </div>
 

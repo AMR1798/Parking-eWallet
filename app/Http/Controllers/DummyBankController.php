@@ -26,8 +26,11 @@ class DummyBankController extends Controller
         $query = ['username' => $username, 'password' => $password, 'bankname' => $bank ];
 
         //check if exist
-        $results = DummyBank::where($query)->exists();
+        $results = DummyBank::where($query)->first();
         if ($results){
+            //return $results;
+            $bankname = $results->bankname;
+            Session::put('bankname', $bankname);
             Session::put('fund', $fund);
             return redirect()->route('transactionaccepted');
         }else{

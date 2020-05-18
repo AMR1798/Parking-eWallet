@@ -10,7 +10,7 @@
                 <div class="view view-cascade gradient-card-header blue-gradient">
 
                     <!-- Title -->
-                    <h2 class="card-header-title mb-3 text-center">Parking Logs</h2>
+                    <h2 class="card-header-title mb-3 text-center">Payment Logs</h2>
 
                 </div>
                 <!-- Card content -->
@@ -20,11 +20,9 @@
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">License Plate</th>
-                                <th scope="col">Entry Time</th>
-                                <th scope="col">Exit Time</th>
-                                <th scope="col">Location</th>
-                                <th scope="col">Total Fee</th>
+                                <th scope="col">Time</th>
+                                <th scope="col">Amount</th>
+                                <th scope="col">Bank</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -37,20 +35,16 @@
                             
                             <tr>
                                 <th scope="row">{{$i++}}</th>
-                                <td>{{$log->plate->license_plate}}</td>
-                                <td>{{$log->entry}}</td>
-                                <td>{{$log->exittime}}</td>
-                                <td>{{$log->gate}}</td>
-                                <td>
-                                    RM {{$log->fee}}
+                                <td>{{$log->created_at}}</td>
+                                <td>RM {{$log->fee}}</td>
+                                <td>{{$log->bankname}}</td>
                                 
-                                </td>
                             </tr>
                             @endforeach
                             @endif
                         </tbody>
                     </table>
-                    {{$logs->links()}}
+
 
                 </div>
 

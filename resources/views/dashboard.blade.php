@@ -8,8 +8,7 @@
             <div class="card-body text-left">
                 <h1><i class="fas fa-dollar-sign"></i></h1>
                 <h5 class="card-title">Total Fee Today</h5>
-                <p class="card-text text-white">Some quick example text to build on the panel title and make up the bulk
-                    of the panel's content.</p>
+                <h3 class="card-title">RM {{$todayfee}}</h3>
             </div>
         </div>
     </div>
@@ -28,6 +27,7 @@
                 <h1><i class="fas fa-street-view"></i></h1>
                 <h5 class="card-title">Parking Visitor Today</h5>
                 <h3 class="card-title">{{$todaycount}}</h3>
+                
             </div>
         </div>
     </div>

@@ -33,6 +33,25 @@
     <link href="{{ asset('css/mdb.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
         integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <style>
+        .fp-controlArrow.fp-prev {
+    left: 0;
+    border: none;
+    width: 50px;
+    height: 101px;
+    background: url(/img/back.svg) no-repeat;
+    cursor: pointer;
+}
+.fp-controlArrow.fp-next {
+    right: 0;
+    border: none;
+    width: 50px;
+    height: 101px;
+    background: url(/img/next.svg) no-repeat;
+    cursor: pointer;
+}
+    </style>
+
 </head>
 
 <body>

@@ -295,8 +295,6 @@ class LogController extends Controller
                 $hour = intval($interval->format('%H'));
                 $minute = intval($interval->format('%I'));
                 //return $hour;
-                //calculate fee based on day(s)
-                $fee = $fee + ($day*$price->maxHour);
                 //calculate fee for first hour
                 $fee = $fee+(1*$price->firstHour);
                 //calculate fee for subsequent hour
@@ -305,6 +303,12 @@ class LogController extends Controller
                 if($minute > 30 ){
                     $fee += $price->nextHour;
                 }
+                if($fee > $price->maxHour){
+                    $fee = $price->maxHour;
+                }
+                //calculate fee based on day(s)
+                $fee = $fee + ($day*$price->maxHour);
+                
                 $entry = $entry->format('Y/m/d H:i');
                 $gate = $search->gate;
                 return view('found',compact('entry','plateid','duration', 'fee', 'gate'));
@@ -342,17 +346,21 @@ class LogController extends Controller
         $day = intval($interval->format('%a'));
         $hour = intval($interval->format('%H'));
         $minute = intval($interval->format('%I'));
-        //return $day;    
-        //calculate fee based on day(s)
-        $fee = $fee + ($day*$price->maxHour);
+        //return $day;  
         //calculate fee for first hour
         $fee = $fee+(1*$price->firstHour);
         //calculate fee for subsequent hour
         $fee = $fee+(--$hour*$price->nextHour);
         //if minutes is more than 30, count as an hour
         if($minute > 30 ){
-        $fee += $price->nextHour;
+            $fee += $price->nextHour;
         }
+        if($fee > $price->maxHour){
+            $fee = $price->maxHour;
+        }  
+        //calculate fee based on day(s)
+        $fee = $fee + ($day*$price->maxHour);
+        
         $textexit = $exit->format('Y-m-d H:i:s');
         //return $fee;
         $plate = Plate::find($plate_id);

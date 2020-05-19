@@ -295,19 +295,25 @@ class LogController extends Controller
                 $hour = intval($interval->format('%H'));
                 $minute = intval($interval->format('%I'));
                 //return $hour;
-                //calculate fee for first hour
-                $fee = $fee+(1*$price->firstHour);
-                //calculate fee for subsequent hour
-                $fee = $fee+(--$hour*$price->nextHour);
-                //if minutes is more than 30, count as an hour
-                if($minute > 30 ){
-                    $fee += $price->nextHour;
+                 //calculate fee if more than 15 minutes)
+                if ($minute > 15){
+                    $fee = $fee + ($price->firstHour);
                 }
-                if($fee > $price->maxHour){
+                
+                if ($hour > 0 && $hour < 2){
+                    $fee = $fee + ($hour*$price->nextHour);
+                }
+
+                if ($hour > 1){
+                    $fee = $fee + (--$hour*$price->nextHour);
+                }
+                
+                if ($fee > $price->maxHour){
                     $fee = $price->maxHour;
                 }
-                //calculate fee based on day(s)
+
                 $fee = $fee + ($day*$price->maxHour);
+                
                 
                 $entry = $entry->format('Y/m/d H:i');
                 $gate = $search->gate;
@@ -347,20 +353,18 @@ class LogController extends Controller
         $hour = intval($interval->format('%H'));
         $minute = intval($interval->format('%I'));
         //return $day;  
-        //calculate fee for first hour
-        $fee = $fee+(1*$price->firstHour);
-        //calculate fee for subsequent hour
-        $fee = $fee+(--$hour*$price->nextHour);
-        //if minutes is more than 30, count as an hour
-        if($minute > 30 ){
-            $fee += $price->nextHour;
+        //calculate fee if more than 15 minutes)
+        if ($minute > 15){
+            $fee = $fee + ($price->firstHour);
         }
-        if($fee > $price->maxHour){
+        if ($hour > 1){
+            $fee = $fee + (--$hour*$price->nextHour);
+        }
+        if ($fee > $price->maxHour){
             $fee = $price->maxHour;
-        }  
-        //calculate fee based on day(s)
-        $fee = $fee + ($day*$price->maxHour);
-        
+        }
+        $fee = $fee * ($days*$price->maxHour);
+
         $textexit = $exit->format('Y-m-d H:i:s');
         //return $fee;
         $plate = Plate::find($plate_id);

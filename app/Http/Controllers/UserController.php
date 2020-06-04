@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\User;
 use Auth;
 use Illuminate\Http\Request;
+use Spatie\Searchable\Search;
+use Spatie\Searchable\ModelSearchAspect;
 
 class UserController extends Controller
 {
@@ -33,5 +35,24 @@ class UserController extends Controller
             return redirect('profile')->with('success', 'Email is the same with the current one. No changes made');
         }
     }
+
+    public function adminview()
+    {
+        $users = User::orderBy('created_at', 'DESC')->with('plates')->paginate(10);
+        return view('adminuserview',compact('users'));
+        return $users;
+    }
+
+    public function search(Request $request)
+    {
+        $results = (new Search())->registerModel(User::class, function(ModelSearchAspect $modelSearchAspect) {
+            $modelSearchAspect->addSearchableAttribute('name')->addSearchableAttribute('email')
+                ->with('plates');
+        })->search($request->input('q'));
+        //return $results;
+        return view('adminusersearch', compact('results'));
+    }
+
+
 
 }

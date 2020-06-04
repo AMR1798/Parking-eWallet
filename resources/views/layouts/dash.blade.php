@@ -47,7 +47,7 @@
                 <!-- Logo -->
                 <li>
                     <div class="logo-wrapper waves-light">
-                        <a href="/admin"><img src="img/logo.png" class="img-fluid flex-center"></a>
+                        <a href="/admin"><img src="/img/logo.png" class="img-fluid flex-center"></a>
                     </div>
                 </li>
                 <!--/. Logo -->
@@ -67,6 +67,10 @@
                                     <li><a href="/admin-payment-overview" class="waves-effect">Payment Overview</a>
                                     </li>
                                     <li><a href="/admin-payment-logs" class="waves-effect">Payment Logs</a>
+                                    </li>
+                                    <li><a href="/admin-vehicle-view" class="waves-effect">Registered Vehicles</a>
+                                    </li>
+                                    <li><a href="/admin-user-view" class="waves-effect">Registered Users</a>
                                     </li>
                                 </ul>
                             </div>

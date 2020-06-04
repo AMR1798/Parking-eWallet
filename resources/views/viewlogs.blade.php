@@ -8,52 +8,12 @@
 
             <!-- Card image -->
             <div class="view view-cascade gradient-card-header blue-gradient">
-                <div class="text-right">
-                    <a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal"
-                        data-target="#modalFilter">Filters</a>
-                </div>
+                
                 <!-- Title -->
                 <h2 class="card-header-title mb-3 text-center">Parking Logs</h2>
                 
             </div>
-            <div class="modal fade" id="modalFilter" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header text-center">
-                            <h4 class="modal-title w-100 font-weight-bold">Filter</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body mx-3">
-                            <div class="md-form mb-5">
-                                <input type="text" id="orangeForm-name" class="form-control validate" name="plate">
-                                <label data-error="wrong" data-success="right" for="orangeForm-name">License Plate</label>
-                            </div>
-                            <hr>
-                            <h3> Filter date </h3>
-                            <div class="md-form mb-5">
-                                <div class="md-form">
-                                    <input type="text" id="date-picker-example" class="form-control datepicker" value="">
-                                    <label for="date-picker-example">Date</label>
-                                  </div> 
-                            </div>
-
-                            <div class="md-form mb-4">
-                                <select class="browser-default custom-select mb-4" id="select" name="entry-exit">
-                                    <option value="entry">Entry</option>
-                                    <option value="exit">Exit</option>
-                                </select>
-                            </div>
-                        <hr>
-                        </div>
-                        <div class="modal-footer d-flex justify-content-center">
-                            <button class="btn btn-deep-orange">Sign up</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
             <!-- Card content -->
             <div class="card-body card-body-cascade text-center table-responsive text-nowrap">
 

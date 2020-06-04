@@ -11,6 +11,9 @@
 |
 */
 
+use Illuminate\Http\Request;
+use App\Plate; 
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -89,6 +92,10 @@ Route::group(['middleware' => 'admin'], function () {
     Route::put('/setprice', 'PriceController@update');
     Route::get('/admin-payment-logs', 'PaymentlogController@index');
     Route::get('/admin-payment-overview', 'PaymentlogController@adminview');
+    Route::get('/admin-user-view', 'UserController@adminview');
+    Route::get('/admin-vehicle-view', 'plateController@adminview');
+    Route::any('/admin-vehicle-view/search', 'plateController@search')->name('vehicle.search');
+    Route::any('/admin-user-view/search', 'userController@search')->name('user.search');
 });
 
 

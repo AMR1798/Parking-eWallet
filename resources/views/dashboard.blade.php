@@ -17,7 +17,7 @@
             <div class="card-body text-left">
                 <h1><i class="fas fa-expand-alt"></i></h1>
                 <h5 class="card-title">Total Fee This Month</h5>
-                <h3 class="card-title">{{$months[$currentmonth]['totalfee']}}</h3>
+                <h3 class="card-title">RM {{$months[$currentmonth]['totalfee']}}</h3>
             </div>
         </div>
     </div>

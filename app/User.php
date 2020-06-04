@@ -5,8 +5,10 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Searchable\Searchable;
+use Spatie\Searchable\SearchResult;
 
-class User extends Authenticatable
+class User extends Authenticatable implements Searchable
 {
     use Notifiable;
 
@@ -45,5 +47,15 @@ class User extends Authenticatable
     public function paymentlogs()
     {
         return $this->hasMany('App\paymentlog');
+    }
+
+    public function getSearchResult(): SearchResult
+    {
+        
+
+        return new SearchResult(
+            $this,
+            $this->name,
+         );
     }
 }

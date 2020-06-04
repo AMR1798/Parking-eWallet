@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Plate;
 use Auth;
 use Illuminate\Http\Request;
+use Spatie\Searchable\Search;
+use Spatie\Searchable\ModelSearchAspect;
+
 
 class PlateController extends Controller
 {
@@ -16,6 +19,22 @@ class PlateController extends Controller
     public function index()
     {
         //
+    }
+
+    public function adminview()
+    {
+        $vehicles = Plate::orderBy('created_at', 'DESC')->with('user')->paginate(10);
+        return view('adminvehicle', compact('vehicles'));
+    }
+
+    public function search(Request $request)
+    {
+        $results = (new Search())->registerModel(Plate::class, function(ModelSearchAspect $modelSearchAspect) {
+            $modelSearchAspect->addSearchableAttribute('license_plate')
+                ->with('user');
+        })->search($request->input('q'));
+        
+        return view('adminvehiclesearch', compact('results'));
     }
 
     /**

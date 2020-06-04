@@ -303,8 +303,9 @@ class LogController extends Controller
                     $fee = $fee + ($hour*$price->nextHour);
                 }
 
-                if ($hour > 1){
+                if ($hour > 2){
                     $fee = $fee + (--$hour*$price->nextHour);
+                    $fee = $fee + ($hour*$price->nextHour);
                 }
                 
                 if ($fee > $price->maxHour){
@@ -356,14 +357,20 @@ class LogController extends Controller
         if ($minute > 15){
             $fee = $fee + ($price->firstHour);
         }
-        if ($hour > 1){
-            $fee = $fee + (--$hour*$price->nextHour);
+        
+        if ($hour > 0 && $hour < 2){
+            $fee = $fee + ($hour*$price->nextHour);
         }
+
+        if ($hour > 2){
+            $fee = $fee + (--$hour*$price->nextHour);
+            $fee = $fee + ($hour*$price->nextHour);
+        }
+        
         if ($fee > $price->maxHour){
             $fee = $price->maxHour;
         }
-        $fee = $fee * ($days*$price->maxHour);
-
+        
         $textexit = $exit->format('Y-m-d H:i:s');
         //return $fee;
         $plate = Plate::find($plate_id);

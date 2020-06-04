@@ -60,9 +60,13 @@
                                 Dashboard<i class="fas fa-angle-down rotate-icon"></i></a>
                             <div class="collapsible-body">
                                 <ul class="list-unstyled">
-                                    <li><a href="/admin" class="waves-effect">Overview</a>
+                                    <li><a href="/admin" class="waves-effect">Parking Overview</a>
                                     </li>
-                                    <li><a href="/viewlogs" class="waves-effect">Parking Logs</a>
+                                    <li><a href="/admin-parking-logs" class="waves-effect">Parking Logs</a>
+                                    </li>
+                                    <li><a href="/admin-payment-overview" class="waves-effect">Payment Overview</a>
+                                    </li>
+                                    <li><a href="/admin-payment-logs" class="waves-effect">Payment Logs</a>
                                     </li>
                                 </ul>
                             </div>

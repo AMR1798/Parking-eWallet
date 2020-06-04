@@ -19,8 +19,7 @@ class LogController extends Controller
     public function index()
     {
         
-        //return $user;
-        //$applications = Application::with('student','subject')->get();
+        
         $logs = Log::whereHas('plate', function ($query) {
             $match = ['user_id' => Auth::user()->id, 'status' => 'EXIT'];
             $query->where($match);

@@ -88,14 +88,16 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => 'admin'], function () {
     Route::get('/admin', 'LogController@adminview');
     Route::get('/admin-parking-logs', 'LogController@viewAll');
+    Route::get('/admin-parking-logs/filter', 'LogController@viewAllFilter')->name('log.filter');
     Route::get('/pricing', 'PriceController@index');
     Route::put('/setprice', 'PriceController@update');
     Route::get('/admin-payment-logs', 'PaymentlogController@index');
+    Route::get('/admin-payment-logs/filter', 'PaymentlogController@indexFilter')->name('payment.filter');
     Route::get('/admin-payment-overview', 'PaymentlogController@adminview');
     Route::get('/admin-user-view', 'UserController@adminview');
     Route::get('/admin-vehicle-view', 'plateController@adminview');
     Route::any('/admin-vehicle-view/search', 'plateController@search')->name('vehicle.search');
-    Route::any('/admin-user-view/search', 'userController@search')->name('user.search');
+    Route::get('/admin-user-view/search/', 'userController@search')->name('user.search');
 });
 
 

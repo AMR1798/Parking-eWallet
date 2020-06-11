@@ -6,6 +6,7 @@ use App\paymentlog;
 use Illuminate\Http\Request;
 use Auth;
 use DateTime;
+use App\Http\Filters\paymentlogFilter;
 class PaymentlogController extends Controller
 {
     /**
@@ -17,6 +18,12 @@ class PaymentlogController extends Controller
     {
         $logs = paymentlog::orderBy('created_at', 'DESC')->with('user')->paginate(10);
         //$logs = paymentlog::all()->orderBy('created_at', 'DESC')
+        //return $logs;
+        return view('topuplog', compact('logs'));
+    }
+    public function indexFilter(paymentlogFilter $filter)
+    {
+        $logs = $filter->sieve(paymentlog::class)->with('user')->orderBy('created_at', 'DESC')->paginate(10);
         //return $logs;
         return view('topuplog', compact('logs'));
     }

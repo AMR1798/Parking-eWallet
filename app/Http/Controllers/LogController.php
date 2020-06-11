@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use DateTime;
 use Auth;
 use App\Price;
+use App\Http\Filters\LogFilter;
 class LogController extends Controller
 {
     /**
@@ -24,7 +25,7 @@ class LogController extends Controller
             $match = ['user_id' => Auth::user()->id, 'status' => 'EXIT'];
             $query->where($match);
         })->with('plate')->orderBy('exittime', 'DESC')->paginate(5);
-        //return $logs;
+       // return $logs;
         $fees = [];
         //calculate fee(s) of each log and push into array
         //return $fees;
@@ -303,7 +304,7 @@ class LogController extends Controller
                     $fee = $fee + ($hour*$price->nextHour);
                 }
 
-                if ($hour > 2){
+                if ($hour >= 2){
                     $fee = $fee + (--$hour*$price->nextHour);
                     $fee = $fee + ($hour*$price->nextHour);
                 }
@@ -430,10 +431,9 @@ class LogController extends Controller
         return view('viewlogs', compact('logs'));
     }
 
-    public function viewAllFilter($filter)
+    public function viewAllFilter(LogFilter $filter)
     {
-        $match = ['exit' => $request->get('plate')];
-        $logs = Log::with('plate.user')->where()->orderBy('id', 'DESC')->paginate(10);
+        $logs = $filter->sieve(Log::class)->with('plate.user')->orderBy('id', 'DESC')->paginate(10);
         //return $logs;
         return view('viewlogs', compact('logs'));
     }

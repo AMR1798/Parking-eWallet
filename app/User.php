@@ -58,4 +58,6 @@ class User extends Authenticatable implements Searchable
             $this->name,
          );
     }
+
+    
 }

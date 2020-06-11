@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\User;
+use App\Plate;
 use Auth;
 use Illuminate\Http\Request;
 use Spatie\Searchable\Search;
@@ -48,9 +49,13 @@ class UserController extends Controller
         $results = (new Search())->registerModel(User::class, function(ModelSearchAspect $modelSearchAspect) {
             $modelSearchAspect->addSearchableAttribute('name')->addSearchableAttribute('email')
                 ->with('plates');
-        })->search($request->input('q'));
-        //return $results;
+        })
+        ->search($request->input('q'));
+
+        
         return view('adminusersearch', compact('results'));
+
+       
     }
 
 

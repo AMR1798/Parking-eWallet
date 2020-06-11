@@ -4,8 +4,65 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ae1e635eadc800fdbcdf16c983ce0443",
+    "content-hash": "f30b1fdd4efac006045f2816e6bb5552",
     "packages": [
+        {
+            "name": "agog/osmose",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/franciskisiara/osmose.git",
+                "reference": "cc8ed3291a5887d8985c2b48406626ac421ec54c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/franciskisiara/osmose/zipball/cc8ed3291a5887d8985c2b48406626ac421ec54c",
+                "reference": "cc8ed3291a5887d8985c2b48406626ac421ec54c",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.0@dev"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Agog\\Osmose\\Providers\\OsmoseServiceProvider"
+                    ],
+                    "aliases": {
+                        "Residue": "Agog\\Osmose\\Library\\Services\\Facades\\Residue"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Agog\\Osmose\\": "src/"
+                },
+                "files": [
+                    "src/functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Francis Kisiara",
+                    "email": "franciskisiara@gmail.com",
+                    "homepage": "https://profiles.agog.co.ke/kisiara",
+                    "role": "Software Engineer"
+                }
+            ],
+            "description": "Elegant filtering for laravel's eloquent models",
+            "keywords": [
+                "eloquent",
+                "filter",
+                "laravel",
+                "query"
+            ],
+            "time": "2020-05-20T07:59:18+00:00"
+        },
         {
             "name": "dnoegel/php-xdg-base-dir",
             "version": "v0.1.1",

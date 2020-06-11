@@ -5,12 +5,12 @@
 <div class="row">
     <div class="col-md-12">
         <div class="container">
-            <form action="{{ route('vehicle.search') }}" method="POST" role="search">
-                {{ csrf_field() }}
+            <form action="{{ route('vehicle.search') }}" method="GET" role="search">
+                
             <div class="input-group md-form form-sm form-2 pl-0">
                 <input class="form-control my-0 py-1 red-border" type="text" placeholder="Search Vehicle" aria-label="Search" name="q">
                 <div class="input-group-append">
-                  <button type="submit" class="input-group-text blue" id="basic-text1"><i class="fas fa-search text-grey"
+                  <button type="submit" class="input-group-text blue" id="basic-text1"><i class="fas fa-search text-white"
                       aria-hidden="true"></i></button>
                 </div>
               </div>
@@ -50,7 +50,7 @@
                             <th scope="row">{{$i++}}</th>
                             <td>{{$s->searchable->license_plate}}</td>
                             <td>{{$s->searchable->created_at}}</td>
-                            <td>{{$s->searchable->user->name}}</td>
+                            <td>{{$s->searchable->user->name ?? ''}}</td>
                         </tr>
                         @endforeach
                         @endif

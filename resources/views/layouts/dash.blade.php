@@ -20,12 +20,13 @@
     <script type="text/javascript" src="{{ asset('js/fullpage.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/mdb.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-    <script src="https://kit.fontawesome.com/6c0f156d86.js" crossorigin="anonymous"></script>
+    <script defer src="/js/all.js"></script> <!--load all styles -->
 
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link href="/css/all.css" rel="stylesheet"> <!--load all styles -->
 
     <!-- Styles -->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/fullpage.css') }}" />

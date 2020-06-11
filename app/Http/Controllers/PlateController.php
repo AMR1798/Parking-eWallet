@@ -24,6 +24,7 @@ class PlateController extends Controller
     public function adminview()
     {
         $vehicles = Plate::orderBy('created_at', 'DESC')->with('user')->paginate(10);
+        //return $vehicles;
         return view('adminvehicle', compact('vehicles'));
     }
 

@@ -5,12 +5,12 @@
 <div class="row">
     <div class="col-md-12">
         <div class="container">
-            <form action="{{ route('user.search') }}" method="POST" role="search">
-                {{ csrf_field() }}
+            <form action="{{ route('user.search') }}" method="GET" role="search">
+               
             <div class="input-group md-form form-sm form-2 pl-0">
                 <input class="form-control my-0 py-1 red-border" type="text" placeholder="Search User" aria-label="Search" name="q">
                 <div class="input-group-append">
-                  <button type="submit" class="input-group-text blue" id="basic-text1"><i class="fas fa-search text-grey"
+                  <button type="submit" class="input-group-text blue" id="basic-text1"><i class="fas fa-search text-white"
                       aria-hidden="true"></i></button>
                 </div>
               </div>
@@ -22,7 +22,7 @@
             <div class="view view-cascade gradient-card-header blue-gradient">
                 
                 <!-- Title -->
-                <h2 class="card-header-title mb-3 text-center">Registered Vehicles</h2>
+                <h2 class="card-header-title mb-3 text-center">Registered Users</h2>
                 
             </div>
            
@@ -36,6 +36,7 @@
                             <th scope="col">Name</th>
                             <th scope="col">Email</th>
                             <th scope="col">Vehicles</th>
+                            <th scope="col">is Admin</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -55,6 +56,13 @@
                                     {{$plate->license_plate}}
                                     <br>
                                 @endforeach
+                            </td>
+                            <td>
+                                @if ($s->searchable->isAdmin == 1)
+                                Yes
+                                @else
+                                No
+                                @endif
                             </td>
                         </tr>
                         @endforeach

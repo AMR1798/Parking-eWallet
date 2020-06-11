@@ -5,12 +5,12 @@
 <div class="row">
     <div class="col-md-12">
         <div class="container">
-            <form action="{{ route('user.search') }}" method="POST" role="search">
-                {{ csrf_field() }}
+            <form action="{{ route('user.search') }}" method="GET" role="search">
+                
             <div class="input-group md-form form-sm form-2 pl-0">
                 <input class="form-control my-0 py-1 red-border" type="text" placeholder="Search User" aria-label="Search" name="q">
                 <div class="input-group-append">
-                  <button type="submit" class="input-group-text blue" id="basic-text1"><i class="fas fa-search text-grey"
+                  <button type="submit" class="input-group-text blue" id="basic-text1"><i class="fas fa-search text-white"
                       aria-hidden="true"></i></button>
                 </div>
               </div>

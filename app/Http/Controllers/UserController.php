@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\User;
 use App\Plate;
+use App\Log;
 use Auth;
 use Illuminate\Http\Request;
 use Spatie\Searchable\Search;
@@ -47,7 +48,12 @@ class UserController extends Controller
     public function adminviewuser($id)
     {
         $user = User::with('plates')->find($id);
-        return view('adminviewuser',compact('user'));
+        $logs = Log::whereHas('user', function ($query) use ($id) {
+            $match = ['user_id' => $id];
+            $query->where($match);
+        })->with('plate')->orderBy('exittime', 'DESC')->paginate(5);
+        //return $user;
+        return view('adminviewuser',compact('user','logs'));
         return $user;
     }
 

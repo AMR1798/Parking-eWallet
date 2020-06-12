@@ -14,7 +14,8 @@ class AddUserIdToLogsTable extends Migration
     public function up()
     {
         Schema::table('logs', function (Blueprint $table) {
-            //
+            $table->bigInteger('user_id')->unsigned()->index()->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
@@ -26,7 +27,8 @@ class AddUserIdToLogsTable extends Migration
     public function down()
     {
         Schema::table('logs', function (Blueprint $table) {
-            //
+            $table->dropForeign('user_id');
+            $table->dropColumn('user_id');
         });
     }
 }

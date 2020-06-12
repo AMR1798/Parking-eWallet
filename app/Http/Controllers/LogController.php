@@ -21,8 +21,8 @@ class LogController extends Controller
     {
         
         
-        $logs = Log::whereHas('plate', function ($query) {
-            $match = ['user_id' => Auth::user()->id, 'status' => 'EXIT'];
+       $logs = Log::whereHas('user', function ($query) {
+            $match = ['user_id' => Auth::user()->id];
             $query->where($match);
         })->with('plate')->orderBy('exittime', 'DESC')->paginate(5);
        // return $logs;
@@ -296,23 +296,24 @@ class LogController extends Controller
                 $minute = intval($interval->format('%I'));
                 //return $hour;
                  //calculate fee if more than 15 minutes)
-                if ($minute > 15){
+                if ((($minute > 15 && $hour == 0) || ($hour == 1)) && $day == 0){
                     $fee = $fee + ($price->firstHour);
+                    $f = true;
                 }
+                if ($minute > 15 ){
+                    $fee = $fee + ($price->nextHour);
+                }
+                //return $fee;
+                if ($hour > 0 && $day != 0){
+                    $fee = $fee + ($price->nextHour*$hour);
+                }
+                //return $fee;   
                 
-                if ($hour > 0 && $hour < 2){
-                    $fee = $fee + ($hour*$price->nextHour);
-                }
-
-                if ($hour >= 2){
-                    $fee = $fee + (--$hour*$price->nextHour);
-                    $fee = $fee + ($hour*$price->nextHour);
-                }
                 
                 if ($fee > $price->maxHour){
                     $fee = $price->maxHour;
                 }
-
+        
                 $fee = $fee + ($day*$price->maxHour);
                 
                 
@@ -355,22 +356,25 @@ class LogController extends Controller
         $minute = intval($interval->format('%I'));
         //return $day;  
         //calculate fee if more than 15 minutes)
-        if ($minute > 15){
+        if ((($minute > 15 && $hour == 0) || ($hour == 1)) && $day == 0){
             $fee = $fee + ($price->firstHour);
+            $f = true;
         }
+        if ($minute > 15 ){
+            $fee = $fee + ($price->nextHour);
+        }
+        //return $fee;
+        if ($hour > 0 && $day != 0){
+            $fee = $fee + ($price->nextHour*$hour);
+        }
+        //return $fee;   
         
-        if ($hour > 0 && $hour < 2){
-            $fee = $fee + ($hour*$price->nextHour);
-        }
-
-        if ($hour > 2){
-            $fee = $fee + (--$hour*$price->nextHour);
-            $fee = $fee + ($hour*$price->nextHour);
-        }
         
         if ($fee > $price->maxHour){
             $fee = $price->maxHour;
         }
+
+        $fee = $fee + ($day*$price->maxHour);
         
         $textexit = $exit->format('Y-m-d H:i:s');
         //return $fee;
@@ -387,6 +391,7 @@ class LogController extends Controller
                 $log->fee = $fee;
                 $log->status = "EXIT";
                 $log->gate = "Simulation";
+                $log->user_id = $plate->user_id;
                 $log->save();
                 return redirect('/fakeexit')->with('success', 'Vehicle exit simulation : success');
             }else{

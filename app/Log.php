@@ -10,4 +10,9 @@ class Log extends Model
     {
         return $this->belongsTo('App\Plate');
     }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
 }

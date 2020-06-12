@@ -38,8 +38,7 @@
                                     <div class="col-sm">
                                         <a href="/transaction" style="color:black">
                                             <button type="button"
-                                                class="btn winter-neva-gradient btn-rounded btn-sm"><strong>View
-                                                    Transaction</strong></button>
+                                                class="btn winter-neva-gradient btn-rounded btn-sm"><strong>Parking History</strong></button>
                                         </a>
                                     </div>
                                     <div class="col-sm">
@@ -59,7 +58,7 @@
                                     <div class="col-sm">
                                         <a href="/paymentlogs" style="color:black">
                                             <button type="button"
-                                                class="btn winter-neva-gradient btn-rounded btn-sm"><strong>View Payment</strong></button>
+                                                class="btn winter-neva-gradient btn-rounded btn-sm"><strong>Payment History</strong></button>
                                         </a>
                                     </div>
                                 </div>

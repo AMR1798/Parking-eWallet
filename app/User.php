@@ -44,6 +44,11 @@ class User extends Authenticatable implements Searchable
         return $this->hasMany('App\Plate');
     }
 
+    public function logs()
+    {
+        return $this->hasMany('App\Log');
+    }
+
     public function paymentlogs()
     {
         return $this->hasMany('App\paymentlog');

@@ -41,7 +41,14 @@ class UserController extends Controller
     {
         $users = User::orderBy('created_at', 'DESC')->with('plates')->paginate(10);
         return view('adminuserview',compact('users'));
-        return $users;
+        //return $users;
+    }
+
+    public function adminviewuser($id)
+    {
+        $user = User::with('plates')->find($id);
+        return view('adminviewuser',compact('user'));
+        return $user;
     }
 
     public function search(Request $request)

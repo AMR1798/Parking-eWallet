@@ -35,8 +35,8 @@
                             <th scope="col">#</th>
                             <th scope="col">Name</th>
                             <th scope="col">Email</th>
-                            <th scope="col">Vehicles</th>
                             <th scope="col">is Admin</th>
+                            <th scope="col">Link</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -52,19 +52,16 @@
                             <td>{{$user->name}}</td>
                             <td>{{$user->email}}</td>
                             <td>
-                                @foreach ($user->plates as $plate)
-                                {{$plate->license_plate}}
-                                <br>
-                                @endforeach
-                            </td>
-                            <td>
                                 @if ($user->isAdmin == 1)
                                 Yes
                                 @else
                                 No
                                 @endif
                             </td>
-                            
+                            <td>
+                                
+                                <a href="/admin-user-view/{{$user->id}}"><button type="button" class="btn btn-info btn-sm"><i class="fas fa-info"></i></button></a>
+                            </td>
                         </tr>
                         @endforeach
                         @endif
@@ -82,6 +79,31 @@
 <hr>
 
 
+@if (session()->get('success'))
+<script>
+    Swal.fire({
+        title: 'Success!',
+        text: '{{session()->get('success')}}',
+        icon: 'success',
+        confirmButtonText: 'OK'
+    })
 
+</script>
+@elseif (session()->get('error'))
+<script>
+    Swal.fire({
+        title: 'Error',
+        text: '{{session()->get('error')}}',
+        icon: 'error',
+        confirmButtonText: 'OK'
+    })
+</script>
+@endif
+
+@foreach ($errors->all() as $error)
+<script>
+    toastr.error('{{ $error }}');
+</script>
+@endforeach
 
 @endsection

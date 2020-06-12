@@ -98,6 +98,8 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('/admin-vehicle-view', 'plateController@adminview');
     Route::any('/admin-vehicle-view/search', 'plateController@search')->name('vehicle.search');
     Route::get('/admin-user-view/search/', 'userController@search')->name('user.search');
+    Route::get('/admin-user-view/{id}', 'userController@adminviewuser');
+    Route::get('/admin-remove-plate/{plateid}', 'PlateController@adminRemove');
 });
 
 

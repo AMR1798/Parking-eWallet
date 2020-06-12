@@ -128,6 +128,29 @@ class PlateController extends Controller
 
     }
 
+    public function adminRemove($plateid)
+    {
+        $plate = Plate::with('user')->find($plateid);
+        //if for whatever reason the user try to use the delete license plate link with random number, this will stop it.
+        //return $plate;
+        if(!$plate==NULL){
+            //check user_id is the same as the user_id binded to the plate
+            //this is to make sure the action were done by admin
+            if (Auth::user()->isAdmin == 1){
+                $plate->user_id = NULL;
+                $plate->save();
+                return redirect('admin-user-view')->with('success','Plate '.$plate->license_plate.' is removed from '.$plate->user->name.' account');
+            }else{
+                //plate is not owned by the user
+                return redirect('admin-user-view')->with('error', 'Unable to delete license plate. This is accesible by admin only');
+            }
+        }else{
+            return redirect('admin-user-view')->with('error', 'The vehicle license plate you are trying to remove is not in the system');
+        }
+
+    }
+
+
     public function addPlate(Request $request)
     {
         $plate = $request->input('plate');

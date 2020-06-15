@@ -22,11 +22,11 @@
                                 </div>
                             </div>
                             <div class="col-md-6 mt-5">
-                                <div class="profile-head">
-                                    <h5>
+                                <div class="profile-head text-center">
+                                    <h3>
                                         {{Auth::user()->name}}
-                                    </h5>
-
+                                    </h3>
+                                    <hr>
                                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                                         <li class="nav-item">
                                             <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home"
@@ -42,15 +42,15 @@
 
                         </div>
                         <div class="row">
-                            <div class="col-md-8 text-center">
+                            <div class="col-md-12 text-center">
                                 <div class="tab-content profile-tab">
                                     <div class="tab-pane fade show active" id="home" role="tabpanel"
                                         aria-labelledby="home-tab">
                                         <div class="row inline align-middle">
-                                            <div class="col-md-6 my-auto">
+                                            <div class="col-md-3 my-auto">
                                                 <p class="m-0"><b>Email</b></p>
                                             </div>
-                                            <div class="col-md-6">
+                                            <div class="col-md-9">
                                                 <div class="row">
                                                     <div class="col-sm my-auto">
                                                         <p class="m-0">{{Auth::user()->email}}</p>
@@ -105,10 +105,81 @@
                                         </div>
                                         <hr>
                                         <div class="row inline align-middle">
-                                            <div class="col-md-6 my-auto">
+                                            <div class="col-md-3 my-auto">
+                                                <p class="m-0"><b>Phone</b></p>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <div class="row">
+                                                    <div class="col-sm my-auto">
+                                                        <p class="m-0">{{Auth::user()->phone}}</p>
+                                                    </div>
+                                                    <div class="col-sm">
+                                                        <button type="button" class="btn btn-primary btn-sm"
+                                                            data-toggle="modal" data-target="#updatePhone">
+                                                            Update Phone
+                                                        </button>
+                                                        <!-- Modal -->
+                                                        <div class="modal fade" id="updatePhone" tabindex="-1"
+                                                            role="dialog" aria-labelledby="exampleModalCenterTitle"
+                                                            aria-hidden="true">
+
+                                                            <!-- Add .modal-dialog-centered to .modal-dialog to vertically center the modal -->
+                                                            <div class="modal-dialog modal-dialog-centered"
+                                                                role="document">
+
+
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title"
+                                                                            id="exampleModalLongTitle">Update Phone
+                                                                        </h5>
+                                                                        <button type="button" class="close"
+                                                                            data-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <form class="border border-light p-5"
+                                                                            action="/phoneupdate" method="POST">
+                                                                            @csrf
+                                                                            @method('PUT')
+                                                                            <input type="string"
+                                                                                id="defaultSaveFormFirstName"
+                                                                                class="form-control"
+                                                                                placeholder="{{Auth::user()->phone}}"
+                                                                                name="phone">
+                                                                            <br>
+                                                                            <button class="btn btn-info btn-block"
+                                                                                type="submit">Save Changes</button>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row inline align-middle">
+                                            <div class="col-md-3 my-auto">
+                                                <p class="m-0"><b>IC Number</b></p>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <div class="row">
+                                                    <div class="col-sm ">
+                                                        <p class="m-0">{{Auth::user()->nric}}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row inline align-middle">
+                                            <div class="col-md-3 my-auto">
                                                 <p class="m-0"><b>Password</b></p>
                                             </div>
-                                            <div class="col-md-6">
+                                            <div class="col-md-9">
                                                 <div class="row">
                                                     <div class="col-sm">
                                                         <button type="button" class="btn btn-primary btn-sm"

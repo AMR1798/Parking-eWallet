@@ -40,6 +40,14 @@
                                 <td>{{$user->email}}</td>
                               </tr>
                               <tr>
+                                <th scope="row"><b>Phone Number</b></th>
+                                <td>{{$user->phone}}</td>
+                              </tr>
+                              <tr>
+                                <th scope="row"><b>IC Number</b></th>
+                                <td>{{$user->nric}}</td>
+                              </tr>
+                              <tr>
                                 <th scope="row"><b>Balance</b></th>
                                 <td>RM {{$user->balance}}</td>
                               </tr>

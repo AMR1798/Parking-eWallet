@@ -43,6 +43,32 @@
                             @enderror
                         </div>
 
+                        <!-- Phone Number -->
+                        <div class="md-form mt-0">
+                            <input type="text" id="phone" class="form-control @error('phone') is-invalid @enderror"
+                                name="phone" value="{{ old('phone') }}" required style="color: white">
+                            <label for="phone" style="color:white">{{ __('Phone Number') }}</label>
+
+                            @error('phone')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+
+                        <!-- NRIC -->
+                        <div class="md-form mt-0">
+                            <input type="text" id="nric" class="form-control @error('nric') is-invalid @enderror"
+                                name="nric" value="{{ old('nric') }}" required style="color: white" maxlength="12">
+                            <label for="nric" style="color:white">{{ __('IC Number') }}</label>
+
+                            @error('nric')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+
                         <!-- Password -->
                         <div class="md-form">
                             <input type="password" id="password"

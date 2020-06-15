@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Plate;
+use App\Log;
 use Auth;
 use Illuminate\Http\Request;
 use Spatie\Searchable\Search;
@@ -26,6 +27,18 @@ class PlateController extends Controller
         $vehicles = Plate::orderBy('created_at', 'DESC')->with('user')->paginate(10);
         //return $vehicles;
         return view('adminvehicle', compact('vehicles'));
+    }
+
+    public function adminviewvehicle($id)
+    {
+        $vehicle = Plate::with('user')->find($id);
+        $logs = Log::whereHas('plate', function ($query) use ($id) {
+            $match = ['plate_id' => $id, 'STATUS' => 'EXIT'];
+            $query->where($match);
+        })->with('user')->orderBy('exittime', 'DESC')->paginate(5);
+        //return $vehicles;
+        //return $logs;
+        return view('adminviewvehicle', compact('vehicle','logs'));
     }
 
     public function search(Request $request)

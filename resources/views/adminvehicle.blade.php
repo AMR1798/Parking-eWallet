@@ -36,6 +36,7 @@
                             <th scope="col">Plate</th>
                             <th scope="col">Created At</th>
                             <th scope="col">User</th>
+                            <th scope="col">Info</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -50,7 +51,10 @@
                             <th scope="row">{{$i++}}</th>
                             <td>{{$vehicle->license_plate}}</td>
                             <td>{{$vehicle->created_at}}</td>
-                            <td>{{$vehicle->user->name ?? ''}}</td>
+                            <td><a style="color:#0097FF" href="/admin-user-view/{{$vehicle->user->id ?? ''}}">{{$vehicle->user->name ?? ''}}</a></td>
+                            <td>
+                                <a href="/admin-vehicle-view/{{$vehicle->id}}"><button type="button" class="btn btn-info btn-sm"><i class="fas fa-info"></i></button></a>
+                            </td>
                         </tr>
                         @endforeach
                         @endif

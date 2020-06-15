@@ -74,6 +74,7 @@ Route::get('/remove/{plateid}', 'PlateController@remove')->middleware('auth');
 Route::get('/paymentlogs', 'PaymentlogController@show')->middleware('auth');
 Route::get('/profile', 'UserController@editprofile')->middleware('auth');
 Route::put('/emailupdate', 'UserController@emailupdate')->middleware('auth');
+Route::put('/phoneupdate', 'UserController@phoneupdate')->middleware('auth');
 Route::post('/passwordupdate', 'ChangePasswordController@store')->name('change.password');
 Route::get('/addvehicle', function () {
     return view('addvehicle');
@@ -96,6 +97,7 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('/admin-payment-overview', 'PaymentlogController@adminview');
     Route::get('/admin-user-view', 'UserController@adminview');
     Route::get('/admin-vehicle-view', 'plateController@adminview');
+    Route::get('/admin-vehicle-view/{vehicleid}', 'plateController@adminviewvehicle');
     Route::any('/admin-vehicle-view/search', 'plateController@search')->name('vehicle.search');
     Route::get('/admin-user-view/search/', 'userController@search')->name('user.search');
     Route::get('/admin-user-view/{id}', 'userController@adminviewuser');

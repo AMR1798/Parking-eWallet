@@ -36,7 +36,7 @@
                             <th scope="col">Name</th>
                             <th scope="col">Email</th>
                             <th scope="col">is Admin</th>
-                            <th scope="col">Link</th>
+                            <th scope="col">Info</th>
                         </tr>
                     </thead>
                     <tbody>

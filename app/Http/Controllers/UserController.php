@@ -38,6 +38,26 @@ class UserController extends Controller
         }
     }
 
+    public function phoneupdate(Request $request)
+    {
+        $phone = $request->get('phone');
+        $data = User::find(Auth::user()->id);
+        if (strcmp($data->phone, $phone) != 0){
+            $match = ['phone' => $request->get('phone')];
+            //find the log for the license plate based on the id of the license plate above
+            $search = User::where($match)->get()->first();
+            if ($search == NULL){
+                $data->phone = $request->get('phone');
+                $data->save();
+                return redirect('profile')->with('success', 'Email successfully updated');
+            }else{
+                return redirect('profile')->with('error', 'Email has already been used by a different account');
+            }
+        }else{
+            return redirect('profile')->with('success', 'Email is the same with the current one. No changes made');
+        }
+    }
+
     public function adminview()
     {
         $users = User::orderBy('created_at', 'DESC')->with('plates')->paginate(10);

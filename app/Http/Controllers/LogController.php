@@ -20,7 +20,6 @@ class LogController extends Controller
     public function index()
     {
         
-        
        $logs = Log::whereHas('user', function ($query) {
             $match = ['user_id' => Auth::user()->id];
             $query->where($match);
@@ -321,11 +320,9 @@ class LogController extends Controller
                     //return $hour;
                     //return $fee;   
                 }
-                
                 if ($fee > $price->maxHour){
                     $fee = $price->maxHour;
                 }
-        
                 $fee = $fee + ($day*$price->maxHour);
                 //return $fee;
                 

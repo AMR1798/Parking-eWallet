@@ -53,6 +53,26 @@
     </div>
     <!-- Grid container -->
 </div>
+<hr>
+<div class="row">
+    <!-- Grid container -->
+    <div class="container">
+
+        <!--Grid row-->
+        <div class="row d-flex justify-content-center">
+
+            <!--Grid column-->
+            <div class="col-md-12">
+                <canvas id="lineChart2"></canvas>
+            </div>
+            <!--Grid column-->
+
+        </div>
+        <!--Grid row-->
+
+    </div>
+    <!-- Grid container -->
+</div>
 
 <script>
     var ctxL = document.getElementById("lineChart").getContext('2d');
@@ -108,6 +128,74 @@
                     pointBackgroundColor: "rgba(173, 53, 186, 0.1)",
 
                 }
+                
+
+            ]
+
+        },
+
+        options: {
+
+            responsive: true
+
+        }
+
+    });
+
+    var ctxL = document.getElementById("lineChart2").getContext('2d');
+
+    var gradientFill = ctxL.createLinearGradient(0, 0, 0, 290);
+
+    gradientFill.addColorStop(0, "rgba(238, 9, 121, 1)");
+
+    gradientFill.addColorStop(1, "rgba(255, 106, 0, 0.1)");
+
+    var myLineChart = new Chart(ctxL, {
+
+        type: 'line',
+
+        data: {
+
+            labels: ["January", "February", "March", "April", "May", "June", "July","August","September","October","November","December"],
+
+            datasets: [
+
+                {
+
+                    label: "Total Fee (RM)",
+
+                    data: [
+                        {{$months['January']['totalfee']}},
+                        {{$months['February']['totalfee']}},
+                        {{$months['March']['totalfee']}},
+                        {{$months['April']['totalfee']}},
+                        {{$months['May']['totalfee']}},
+                        {{$months['June']['totalfee']}},
+                        {{$months['July']['totalfee']}},
+                        {{$months['August']['totalfee']}},
+                        {{$months['September']['totalfee']}},
+                        {{$months['October']['totalfee']}},
+                        {{$months['November']['totalfee']}},
+                        {{$months['December']['totalfee']}}
+
+                    ],
+
+                    backgroundColor: gradientFill,
+
+                    borderColor: [
+
+                        '#ff6a00',
+
+                    ],
+
+                    borderWidth: 2,
+
+                    pointBorderColor: "#fff",
+
+                    pointBackgroundColor: "rgba(173, 53, 186, 0.1)",
+
+                }
+                
 
             ]
 

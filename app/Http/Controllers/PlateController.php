@@ -167,30 +167,32 @@ class PlateController extends Controller
     public function addPlate(Request $request)
     {
         $plate = $request->input('plate');
-
-        $match = ['license_plate' => $plate];
-        $search = Plate::where($match)->get()->first();
-        //check if plate exist in the system
-        if (!$search == NULL ){
-            //this is when plate is already in the system
-            //check if plate is already binded to another account
-            if($search->user_id != NULL){
-            //this is when plate is already binded to an account
-            return view('addvehicle')->with('error','Vehicle license plate is already registered to a user');
+        if($plate != ""){
+            $match = ['license_plate' => $plate];
+            $search = Plate::where($match)->get()->first();
+            //check if plate exist in the system
+            if (!$search == NULL ){
+                //this is when plate is already in the system
+                //check if plate is already binded to another account
+                if($search->user_id != NULL){
+                //this is when plate is already binded to an account
+                return view('addvehicle')->with('error','Vehicle license plate is already registered to a user');
+                }else{
+                    //this is when plate is not binded to an account yet
+                    $search->user_id = Auth::user()->id;
+                    $search->save();
+                    return view('addvehicle')->with('success','Vehicle license plate added into your account');
+                }
             }else{
-                //this is when plate is not binded to an account yet
-                $search->user_id = Auth::user()->id;
-                $search->save();
+                //this is when license plate is not in the system (not entered the parking yet)
+                $new = new Plate;
+                $new->license_plate = strtoupper($plate);
+                $new->user_id = Auth::user()->id;
+                $new->save();
                 return view('addvehicle')->with('success','Vehicle license plate added into your account');
             }
         }else{
-            //this is when license plate is not in the system (not entered the parking yet)
-            $new = new Plate;
-            $new->license_plate = strtoupper($plate);
-            $new->user_id = Auth::user()->id;
-            $new->save();
-            return view('addvehicle')->with('success','Vehicle license plate added into your account');
+            return view('addvehicle')->with('error','No license plate input from user');
         }
-        return $search;
     }
 }

@@ -60,7 +60,7 @@ Route::post('/bank', 'DummyBankController@bankTransaction');
 Route::get('/bankaccept', 'BalanceController@accept')->name('transactionaccepted');
 
 //entah
-Route::post('/search', 'LogController@search');
+Route::get('/search', 'LogController@search');
 
 Route::post('/addvehicle', 'PlateController@addPlate');
 

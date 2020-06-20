@@ -10,8 +10,7 @@
                 <div class="align-self-center text-center col-sm-1"></div>
                 <div class="align-self-center text-center col-sm-7">
                     <h1 style="color:white"><strong>Search Your Car</strong></h1>
-                    <form action="/search" method="POST" role="search">
-                        @csrf
+                    <form action="/search" method="GET" role="search">
                         <div class="input-group mb-3 ">
                             <input type="text" name="plate" class="form-control" placeholder="Vehicle License Plate"
                                 aria-label="Vehicle License Plate" aria-describedby="submit" style="border-radius: 50px 0 0 50px;min-height:50px;

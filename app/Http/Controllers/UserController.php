@@ -60,7 +60,8 @@ class UserController extends Controller
 
     public function adminview()
     {
-        $users = User::orderBy('created_at', 'DESC')->paginate(10);
+        $match = ['isAdmin' => '0'];
+        $users = User::where($match)->orderBy('created_at', 'DESC')->paginate(10);
         return view('adminuserview',compact('users'));
         //return $users;
     }
@@ -79,6 +80,7 @@ class UserController extends Controller
 
     public function search(Request $request)
     {
+        $match = ['isAdmin' => '0'];
         if ($request->input('q')!=NULL){
             $results = (new Search())->registerModel(User::class, function(ModelSearchAspect $modelSearchAspect) {
                 $modelSearchAspect->addSearchableAttribute('name')->addSearchableAttribute('email');

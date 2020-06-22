@@ -41,14 +41,11 @@
                     </thead>
                     <tbody>
                         @if ($vehicles != NULL)
-                        @php 
-                        $i = 1;
-                        $j = 0;
-                        @endphp
-                        @foreach ($vehicles as $vehicle)
+                        
+                        @foreach ($vehicles as $key => $vehicle)
                         
                         <tr>
-                            <th scope="row">{{$i++}}</th>
+                            <th scope="row">{{$vehicles->firstItem() + $key }}</th>
                             <td>{{$vehicle->license_plate}}</td>
                             <td>{{$vehicle->created_at}}</td>
                             <td><a style="color:#0097FF" href="/admin-user-view/{{$vehicle->user->id ?? ''}}">{{$vehicle->user->name ?? ''}}</a></td>

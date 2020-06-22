@@ -35,29 +35,19 @@
                             <th scope="col">#</th>
                             <th scope="col">Name</th>
                             <th scope="col">Email</th>
-                            <th scope="col">is Admin</th>
                             <th scope="col">Info</th>
                         </tr>
                     </thead>
                     <tbody>
                         @if ($users != NULL)
-                        @php 
-                        $i = 1;
-                        $j = 0;
-                        @endphp
-                        @foreach ($users as $user)
+                        
+                        @foreach ($users as $key => $user)
                         
                         <tr>
-                            <th scope="row">{{$i++}}</th>
+                            <th scope="row">{{$users->firstItem() + $key}}</th>
                             <td>{{$user->name}}</td>
                             <td>{{$user->email}}</td>
-                            <td>
-                                @if ($user->isAdmin == 1)
-                                Yes
-                                @else
-                                No
-                                @endif
-                            </td>
+                            
                             <td>
                                 <a href="/admin-user-view/{{$user->id}}"><button type="button" class="btn btn-info btn-sm"><i class="fas fa-info"></i></button></a>
                             </td>

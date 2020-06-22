@@ -92,10 +92,10 @@
                         $i = 1;
                         $j = 0;
                         @endphp
-                        @foreach ($logs as $log)
+                        @foreach ($logs as $key => $log)
 
                         <tr>
-                            <th scope="row">{{$i++}}</th>
+                            <th scope="row">{{$logs->firstItem() + $key}}</th>
                             <td>{{$log->plate->license_plate}}</td>
                             <td>{{$log->entry}}</td>
                             <td>{{$log->exittime}}</td>
@@ -108,7 +108,7 @@
                         @endif
                     </tbody>
                 </table>
-                {{$logs->links()}}
+                {{$logs->appends(request()->input())->links()}}
 
             </div>
 

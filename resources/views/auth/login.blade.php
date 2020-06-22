@@ -67,4 +67,25 @@
         </div>
     </div>
 </div>
+@if (session()->get('success'))
+<script>
+    Swal.fire({
+        title: 'Success!',
+        text: '{{session()->get('success')}}',
+        icon: 'success',
+        confirmButtonText: 'OK'
+    })
+
+</script>
+@elseif (session()->get('error'))
+<script>
+    Swal.fire({
+        title: 'Error',
+        text: '{{session()->get('error')}}',
+        icon: 'error',
+        confirmButtonText: 'OK'
+    })
+
+</script>
+@endif
 @endsection

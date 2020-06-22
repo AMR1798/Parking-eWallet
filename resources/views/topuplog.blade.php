@@ -83,14 +83,11 @@
                     </thead>
                     <tbody>
                         @if ($logs != NULL)
-                        @php 
-                        $i = 1;
-                        $j = 0;
-                        @endphp
-                        @foreach ($logs as $log)
+                        
+                        @foreach ($logs as $key=> $log)
                         
                         <tr>
-                            <th scope="row">{{$i++}}</th>
+                            <th scope="row">{{$logs->firstItem() + $key}}</th>
                             <td>{{$log->created_at}}</td>
                             <td>RM {{$log->fee}}</td>
                             <td>{{$log->bankname}}</td>
@@ -103,7 +100,7 @@
                         @endif
                     </tbody>
                 </table>
-                {{$logs->links()}}
+                {{$logs->appends(request()->input())->links()}}
 
             </div>
 

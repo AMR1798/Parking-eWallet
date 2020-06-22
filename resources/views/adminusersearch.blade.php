@@ -32,11 +32,9 @@
                 <table class="table text-center">
                     <thead>
                         <tr>
-                            <th scope="col">#</th>
+                            
                             <th scope="col">Name</th>
                             <th scope="col">Email</th>
-                            <th scope="col">Vehicles</th>
-                            <th scope="col">is Admin</th>
                             <th scope="col">Info</th>
                         </tr>
                     </thead>
@@ -47,28 +45,17 @@
                         $j = 0;
                         @endphp
                         @foreach ($results as $s)
-                        
+                        @if ($s->searchable->isAdmin == 0)
                         <tr>
-                            <th scope="row">{{$i++}}</th>
+                            
                             <td>{{$s->searchable->name}}</td>
                             <td>{{$s->searchable->email}}</td>
-                            <td>
-                                @foreach ($s->searchable->plates as $plate)
-                                    {{$plate->license_plate}}
-                                    <br>
-                                @endforeach
-                            </td>
-                            <td>
-                                @if ($s->searchable->isAdmin == 1)
-                                Yes
-                                @else
-                                No
-                                @endif
-                            </td>
+                            
                             <td>
                                 <a href="/admin-user-view/{{$s->searchable->id}}"><button type="button" class="btn btn-info btn-sm"><i class="fas fa-info"></i></button></a>
                             </td>
                         </tr>
+                        @endif
                         @endforeach
                         @endif
                     </tbody>

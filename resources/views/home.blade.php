@@ -28,7 +28,7 @@
                         <div class="card-body">
                             <!-- Name -->
                             <h4 class="card-title">{{$data->name}}</h4>
-                            <p> <a href="/profile" style="color:black"><button type="button" class="btn btn-flat btn-sm winter-neva-gradient"><u>Update Account</u></button></a> </p>
+                            <p> <a href="/profile" style="color:black"><button type="button" class="btn btn-flat btn-sm winter-neva-gradient"><u>View Account</u></button></a> </p>
                             <hr>
 
                             <h3><i style="color:#85bb65" class="fas fa-dollar-sign"></i> Balance:
@@ -44,7 +44,7 @@
                                     <div class="col-sm">
                                         <a href="/addbalance" style="color:black">
                                             <button type="button"
-                                                class="btn winter-neva-gradient btn-rounded btn-sm"><strong>Add
+                                                class="btn winter-neva-gradient btn-rounded btn-sm"><strong>Reload
                                                     Balance</strong></button>
                                         </a>
                                     </div>
@@ -58,7 +58,7 @@
                                     <div class="col-sm">
                                         <a href="/paymentlogs" style="color:black">
                                             <button type="button"
-                                                class="btn winter-neva-gradient btn-rounded btn-sm"><strong>Payment History</strong></button>
+                                                class="btn winter-neva-gradient btn-rounded btn-sm"><strong>Transaction History</strong></button>
                                         </a>
                                     </div>
                                 </div>

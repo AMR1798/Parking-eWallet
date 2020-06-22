@@ -28,6 +28,18 @@ class PlateController extends Controller
         //return $vehicles;
         return view('adminvehicle', compact('vehicles'));
     }
+    public function search(Request $request)
+    {
+        if ($request->input('q') != NULL){
+            $results = (new Search())->registerModel(Plate::class, function(ModelSearchAspect $modelSearchAspect) {
+                $modelSearchAspect->addSearchableAttribute('license_plate')
+                    ->with('user');
+            })->search($request->input('q'));
+            return view('adminvehiclesearch', compact('results'));
+        }else{
+            return redirect('/admin-vehicle-view');
+        }
+    }
 
     public function adminviewvehicle($id)
     {
@@ -38,18 +50,11 @@ class PlateController extends Controller
         })->with('user')->orderBy('exittime', 'DESC')->paginate(5);
         //return $vehicles;
         //return $logs;
+        //return "hehe";
         return view('adminviewvehicle', compact('vehicle','logs'));
     }
 
-    public function search(Request $request)
-    {
-        $results = (new Search())->registerModel(Plate::class, function(ModelSearchAspect $modelSearchAspect) {
-            $modelSearchAspect->addSearchableAttribute('license_plate')
-                ->with('user');
-        })->search($request->input('q'));
-        
-        return view('adminvehiclesearch', compact('results'));
-    }
+    
 
     /**
      * Show the form for creating a new resource.

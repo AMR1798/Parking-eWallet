@@ -37,6 +37,7 @@
                             <th scope="col">Email</th>
                             <th scope="col">Vehicles</th>
                             <th scope="col">is Admin</th>
+                            <th scope="col">Info</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -63,6 +64,9 @@
                                 @else
                                 No
                                 @endif
+                            </td>
+                            <td>
+                                <a href="/admin-user-view/{{$s->searchable->id}}"><button type="button" class="btn btn-info btn-sm"><i class="fas fa-info"></i></button></a>
                             </td>
                         </tr>
                         @endforeach

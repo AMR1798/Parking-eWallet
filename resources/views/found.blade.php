@@ -36,8 +36,7 @@
                         </div>
                         <br>
                         <br>
-                        <strong>Having a problem?</strong> <a href="/problem"><button
-                                class="btn btn-rounded blue-gradient"> <strong>Click Here</strong> </button></a>
+                        <strong>Having a problem? Contact Us at +603-8921 2020 or admin@parkey.com</strong>
                     </div>
                 </div>
             </div>

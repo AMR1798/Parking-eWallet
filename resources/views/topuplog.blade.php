@@ -13,7 +13,7 @@
                 <div class="d-flex justify-content-between bd-highlight mb-3">
                     <div class="p-2 bd-highlight"></div>
                     <div class="p-2 bd-highlight">
-                        <h2 class="card-header-title mb-3 text-center">Payment Logs </h2>
+                        <h2 class="card-header-title mb-3 text-center">Reload Logs </h2>
                     </div>
                     <div class="p-2 bd-highlight"><button type="button" class="btn btn-primary align-right"
                             data-toggle="modal" data-target="#filterModal">
@@ -40,7 +40,7 @@
                                 <form class="border border-light p-5" action="{{ route('payment.filter') }}" method="GET"
                                     role="search">
 
-                                    <p class="h4 mb-4 text-center" style="color:black">Filter Payment Logs</p>
+                                    <p class="h4 mb-4 text-center" style="color:black">Filter Reload Logs</p>
 
 
                                     <label for="select">Log Status</label>
@@ -77,6 +77,8 @@
                             <th scope="col">Amount</th>
                             <th scope="col">Bank</th>
                             <th scope="col">User</th>
+                            <th scope="col">Phone Number</th>
+                            <th scope="col">IC Number</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -93,6 +95,8 @@
                             <td>RM {{$log->fee}}</td>
                             <td>{{$log->bankname}}</td>
                             <td>{{$log->user->name}}</td>
+                            <td>{{$log->user->phone}}</td>
+                            <td>{{$log->user->nric}}</td>
                             
                         </tr>
                         @endforeach

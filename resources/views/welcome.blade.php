@@ -23,7 +23,7 @@
                         </div>
                         </form>
                       <br>
-                      <strong style="color:white">Having a problem?</strong>  <a href="/problem"><button class="btn btn-rounded btn-light"> <strong>Click Here</strong> </button></a>
+                      <strong style="color:white">Having a problem? Contact Us at +603-8921 2020 or admin@parkey.com</strong>  
                 </div>
             </div>
         </div>

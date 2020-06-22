@@ -51,16 +51,16 @@ class UserController extends Controller
                 $data->save();
                 return redirect('profile')->with('success', 'Email successfully updated');
             }else{
-                return redirect('profile')->with('error', 'Email has already been used by a different account');
+                return redirect('profile')->with('error', 'Phone number has already been used by a different account');
             }
         }else{
-            return redirect('profile')->with('success', 'Email is the same with the current one. No changes made');
+            return redirect('profile')->with('success', 'Phone number is the same with the current one. No changes made');
         }
     }
 
     public function adminview()
     {
-        $users = User::orderBy('created_at', 'DESC')->with('plates')->paginate(10);
+        $users = User::orderBy('created_at', 'DESC')->paginate(10);
         return view('adminuserview',compact('users'));
         //return $users;
     }
@@ -79,16 +79,15 @@ class UserController extends Controller
 
     public function search(Request $request)
     {
-        $results = (new Search())->registerModel(User::class, function(ModelSearchAspect $modelSearchAspect) {
-            $modelSearchAspect->addSearchableAttribute('name')->addSearchableAttribute('email')
-                ->with('plates');
-        })
-        ->search($request->input('q'));
-
-        
-        return view('adminusersearch', compact('results'));
-
-       
+        if ($request->input('q')!=NULL){
+            $results = (new Search())->registerModel(User::class, function(ModelSearchAspect $modelSearchAspect) {
+                $modelSearchAspect->addSearchableAttribute('name')->addSearchableAttribute('email');
+            })
+            ->search($request->input('q'));
+            return view('adminusersearch', compact('results'));
+        }else{
+            return redirect('/admin-user-view');
+        }
     }
 
 

@@ -40,7 +40,11 @@ Route::get('/notfound', function () {
 });
 
 Route::get('/dummybank', function () {
+    if (session()->has('fund')){
     return view('bank');
+    }else{
+        return redirect('/home');
+    }
 })->name('dummybank');
 
 Route::get('/fakeexit', 'LogController@fakeExitView');
@@ -96,9 +100,9 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('/admin-payment-logs/filter', 'PaymentlogController@indexFilter')->name('payment.filter');
     Route::get('/admin-payment-overview', 'PaymentlogController@adminview');
     Route::get('/admin-user-view', 'UserController@adminview');
+    Route::get('/admin-vehicle-view/search', 'plateController@search')->name('vehicle.search');
     Route::get('/admin-vehicle-view', 'plateController@adminview');
     Route::get('/admin-vehicle-view/{vehicleid}', 'plateController@adminviewvehicle');
-    Route::any('/admin-vehicle-view/search', 'plateController@search')->name('vehicle.search');
     Route::get('/admin-user-view/search/', 'userController@search')->name('user.search');
     Route::get('/admin-user-view/{id}', 'userController@adminviewuser');
     Route::get('/admin-remove-plate/{plateid}', 'PlateController@adminRemove');

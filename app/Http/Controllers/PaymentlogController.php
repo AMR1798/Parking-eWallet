@@ -179,7 +179,7 @@ class PaymentlogController extends Controller
     public function show()
     {
         $match = ['user_id' => Auth::user()->id];
-        $logs = paymentlog::where($match)->get();
+        $logs = paymentlog::where($match)->orderBy('created_at', 'DESC')->get();
         return view('paymentlog', compact('logs'));
     }
 

@@ -7,7 +7,7 @@
         <div class="card h-100 text-white purple-gradient mb-3" style="max-width: 20rem;">
             <div class="card-body text-left">
                 <h1><i class="fas fa-dollar-sign"></i></h1>
-                <h5 class="card-title">Total Payment Today</h5>
+                <h5 class="card-title">Total Reload Today</h5>
             <h3 class="card-title">RM {{$todaycount}}</h3>
             </div>
         </div>
@@ -16,7 +16,7 @@
         <div class="card h-100 text-white blue-gradient mb-3" style="max-width: 20rem;">
             <div class="card-body text-left">
                 <h1><i class="fas fa-expand-alt"></i></h1>
-                <h5 class="card-title">Total Payment This Month</h5>
+                <h5 class="card-title">Total Reload This Month</h5>
                 <h3 class="card-title">RM {{$months[$currentmonth]['countpayment']}} </h3>
             </div>
         </div>
@@ -65,7 +65,7 @@
 
                 {
 
-                    label: "Total Payment Top Up",
+                    label: "Total Reload Top Up",
 
                     data: [
                         {{$months['January']['countpayment']}},

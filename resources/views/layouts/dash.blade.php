@@ -65,9 +65,9 @@
                                     </li>
                                     <li><a href="/admin-parking-logs" class="waves-effect">Parking Logs</a>
                                     </li>
-                                    <li><a href="/admin-payment-overview" class="waves-effect">Payment Overview</a>
+                                    <li><a href="/admin-payment-overview" class="waves-effect">Reload Overview</a>
                                     </li>
-                                    <li><a href="/admin-payment-logs" class="waves-effect">Payment Logs</a>
+                                    <li><a href="/admin-payment-logs" class="waves-effect">Reload Logs</a>
                                     </li>
                                     <li><a href="/admin-vehicle-view" class="waves-effect">Registered Vehicles</a>
                                     </li>

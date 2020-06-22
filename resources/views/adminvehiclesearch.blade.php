@@ -51,6 +51,9 @@
                             <td>{{$s->searchable->license_plate}}</td>
                             <td>{{$s->searchable->created_at}}</td>
                             <td>{{$s->searchable->user->name ?? ''}}</td>
+                            <td>
+                                <a href="/admin-vehicle-view/{{$s->searchable->id}}"><button type="button" class="btn btn-info btn-sm"><i class="fas fa-info"></i></button></a>
+                            </td>
                         </tr>
                         @endforeach
                         @endif

@@ -29,12 +29,18 @@ class DummyBankController extends Controller
         $results = DummyBank::where($query)->first();
         if ($results){
             //return $results;
+            if($fund <= $results->balance){
             $bankname = $results->bankname;
             Session::put('bankname', $bankname);
             Session::put('fund', $fund);
+            $results->balance -= $fund;
+            $results->save();
             return redirect()->route('transactionaccepted');
+            }else{
+                return redirect('/home')->with('error','Insufficient Bank Balance');
+            }
         }else{
-            return "no data found in dummybank";
+            return redirect('/dummybank')->with('fund',$fund)->with('error','Incorrect Bank Credentials');
         }
     }
 }

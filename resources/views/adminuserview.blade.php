@@ -59,7 +59,6 @@
                                 @endif
                             </td>
                             <td>
-                                
                                 <a href="/admin-user-view/{{$user->id}}"><button type="button" class="btn btn-info btn-sm"><i class="fas fa-info"></i></button></a>
                             </td>
                         </tr>

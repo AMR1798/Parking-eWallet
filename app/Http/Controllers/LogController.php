@@ -365,26 +365,36 @@ class LogController extends Controller
         $minute = intval($interval->format('%I'));
         //return $day;  
         //calculate fee if more than 15 minutes)
-        if ((($minute > 15 && $hour == 0) || ($hour == 1)) && $day == 0){
-            $fee = $fee + ($price->firstHour);
-            $f = true;
+        if ($day == 0){
+            if ($minute > 15 && $hour == 0 || $hour == 1){
+                $fee = $fee + ($price->firstHour);
+            }else if ($hour > 1){
+                $fee = $fee + ($price->firstHour);
+                --$hour;
+                $fee = $fee + ($price->nextHour*$hour);
+                if ($minute > 15){
+                    $fee = $fee + ($price->nextHour);
+                }
+            }
+            //$f = true;
+        }else {
+            //calculate next day
+            //return $fee;
+            if ($minute > 15 ){
+                $fee = $fee + ($price->nextHour);
+            }
+            //return $fee;
+            if ($hour > 0 ){
+                $fee = $fee + ($price->nextHour*$hour);
+            }
+            //return $hour;
+            //return $fee;   
         }
-        if ($minute > 15 ){
-            $fee = $fee + ($price->nextHour);
-        }
-        //return $fee;
-        if ($hour > 0 && $day != 0){
-            $fee = $fee + ($price->nextHour*$hour);
-        }
-        //return $fee;   
-        
-        
         if ($fee > $price->maxHour){
             $fee = $price->maxHour;
         }
-
         $fee = $fee + ($day*$price->maxHour);
-        //return $fee;
+        return $fee;
         $textexit = $exit->format('Y-m-d H:i:s');
         //return $fee;
         $plate = Plate::find($plate_id);
@@ -438,8 +448,6 @@ class LogController extends Controller
 
     public function viewAll()
     {
-        
-        
         $logs = Log::with('plate.user')->orderBy('id', 'DESC')->paginate(10);
         //return $logs;
         return view('viewlogs', compact('logs'));

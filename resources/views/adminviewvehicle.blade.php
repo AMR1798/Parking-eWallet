@@ -45,7 +45,7 @@
                               </tr>
                               <tr>
                                 <th scope="row"><b>Update At</b></th>
-                                <td>RM {{$vehicle->updated_at}}</td>
+                                <td>{{$vehicle->updated_at}}</td>
                               </tr>
                             </tbody>
                           </table>

@@ -24,33 +24,27 @@
                 <input type="password" id="password" class="form-control mb-4" placeholder="Password" name="password">
                 <input type="hidden" value="{{session()->get('fund')}}" name="fund">
             
-                <button class="btn btn-info btn-block" type="submit">Send</button>
+                <button class="btn btn-info btn-block" type="submit">Proceed</button>
             </form>
         </div>
     </div>
     <hr>
 
 </div>
-@if (!empty($success))
+@if (session()->get('fund') == NULL)
 <script>
-    Swal.fire({
-  title: 'Success!',
-  text: '{{$success}}',
-  icon: 'success',
-  confirmButtonText: 'OK'
-}).then(function() {
-    // Redirect the user
-    window.location.href = "/home";
-    })
+    
 </script>
-@elseif (!empty($error))
+@endif
+@if (session()->get('error'))
 <script>
     Swal.fire({
-  title: 'Error',
-  text: '{{$error}}',
-  icon: 'error',
-  confirmButtonText: 'OK'
-})
+        title: 'Error',
+        text: '{{session()->get('error')}}',
+        icon: 'error',
+        confirmButtonText: 'OK'
+    })
+
 </script>
 @endif
 @endsection

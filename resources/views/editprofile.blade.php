@@ -147,7 +147,7 @@
                                                                                 id="defaultSaveFormFirstName"
                                                                                 class="form-control"
                                                                                 placeholder="{{Auth::user()->phone}}"
-                                                                                name="phone">
+                                                                                name="phone" maxlength="11">
                                                                             <br>
                                                                             <button class="btn btn-info btn-block"
                                                                                 type="submit">Save Changes</button>

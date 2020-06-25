@@ -6,7 +6,7 @@
         <div class="col-md-8 text-center my-auto">
             <form class="border border-light p-5" action="/bank" method="POST">
                 @csrf
-                <p class="h4 mb-4 text-center">Dummy Bank</p>
+                <p class="h4 mb-4 text-center">FPX Online Banking</p>
             
             
                 <label for="bank">Bank</label>

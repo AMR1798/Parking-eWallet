@@ -71,10 +71,10 @@
                             $i = 1;
                             $j = 0;
                             @endphp
-                            @foreach ($logs as $log)
+                            @foreach ($logs as $key => $log)
                             
                             <tr>
-                                <th scope="row">{{$i++}}</th>
+                                <th scope="row">{{$logs->firstItem() + $key}}</th>
                                 <td>{{$log->plate->license_plate}}</td>
                                 <td>{{$log->entry}}</td>
                                 <td>{{$log->exittime}}</td>
@@ -89,7 +89,7 @@
                             @endif
                         </tbody>
                     </table>
-                    {{$logs->links()}}
+                    {{$logs->fragment('history')->links()}}
                     </div>
                 </div>
               </div>
@@ -128,5 +128,33 @@
     toastr.error('{{ $error }}');
 </script>
 @endforeach
-
+<script>
+    jQuery( function( $ ){
+        // List of tab IDs.
+        var tabs = {
+            info,
+            history
+        };
+    
+        // Default tab's ID.
+        var default_tab = 'info';
+    
+        function showTab( parent_id ) {
+            $( 'a[data-toggle="tab"][href="#' + parent_id + '"]' ).first().click();
+        }
+    
+        $( window ).on( 'load hashchange', function(){
+            var tab_id = location.hash || '';
+    
+            // Remove the hash (i.e. `#`)
+            tab_id = tab_id.substring(1);
+    
+            if ( tab_id && tabs[ tab_id ] ) {
+                showTab( tab_id );
+            } else {
+                showTab( default_tab );
+            }
+        } );
+    } );
+    </script>
 @endsection

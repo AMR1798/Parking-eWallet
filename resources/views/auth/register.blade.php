@@ -46,7 +46,7 @@
                         <!-- Phone Number -->
                         <div class="md-form mt-0">
                             <input type="text" id="phone" class="form-control @error('phone') is-invalid @enderror"
-                                name="phone" value="{{ old('phone') }}" required style="color: white">
+                                name="phone" value="{{ old('phone') }}" required style="color: white" maxlength="11">
                             <label for="phone" style="color:white">{{ __('Phone Number') }}</label>
 
                             @error('phone')

@@ -40,6 +40,9 @@ class UserController extends Controller
 
     public function phoneupdate(Request $request)
     {
+        $this->validate($request,[
+            'phone'=>'regex:/(01)[0-9]{8,9}/','min:10', 'max:11',
+         ]);
         $phone = $request->get('phone');
         $data = User::find(Auth::user()->id);
         if (strcmp($data->phone, $phone) != 0){

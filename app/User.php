@@ -8,7 +8,7 @@ use Illuminate\Notifications\Notifiable;
 use Spatie\Searchable\Searchable;
 use Spatie\Searchable\SearchResult;
 
-class User extends Authenticatable implements Searchable
+class User extends Authenticatable implements MustVerifyEmail, Searchable
 {
     use Notifiable;
 

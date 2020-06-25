@@ -12,7 +12,10 @@
 */
 
 use Illuminate\Http\Request;
+
 use App\Plate; 
+
+Auth::routes(['verify' => true]);
 
 Route::get('/', function () {
     return view('welcome');
@@ -59,36 +62,41 @@ Route::post('/fakeentry', 'LogController@fakeEntry');
 
 //development route habis sini, remove or u noob 
 
-//dummy bank route
-Route::post('/bank', 'DummyBankController@bankTransaction');
-Route::get('/bankaccept', 'BalanceController@accept')->name('transactionaccepted');
+
 
 //entah
-Route::get('/search', 'LogController@search');
-
-Route::post('/addvehicle', 'PlateController@addPlate');
-
-Route::post('/addbalance', 'BalanceController@addbalance');
-
 
 Auth::routes();
 
-Route::get('/transaction', 'LogController@index')->middleware('auth');
-Route::get('/remove/{plateid}', 'PlateController@remove')->middleware('auth');
-Route::get('/paymentlogs', 'PaymentlogController@show')->middleware('auth');
-Route::get('/profile', 'UserController@editprofile')->middleware('auth');
-Route::put('/emailupdate', 'UserController@emailupdate')->middleware('auth');
-Route::put('/phoneupdate', 'UserController@phoneupdate')->middleware('auth');
-Route::post('/passwordupdate', 'ChangePasswordController@store')->name('change.password');
-Route::get('/addvehicle', function () {
-    return view('addvehicle');
-})->middleware('auth');
+Route::get('/search', 'LogController@search');
 
-Route::get('/addbalance', function () {
-    return view('addbalance');
-})->middleware('auth');
 
-Route::get('/home', 'HomeController@index')->name('home');
+
+
+
+Route::group(['middleware' => 'verified'], function () {
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::post('/addvehicle', 'PlateController@addPlate')->middleware('auth');
+    Route::post('/addbalance', 'BalanceController@addbalance')->middleware('auth');
+    Route::get('/parking', 'LogController@index')->middleware('auth');
+    Route::get('/remove/{plateid}', 'PlateController@remove')->middleware('auth');
+    Route::get('/paymentlogs', 'PaymentlogController@show')->middleware('auth');
+    Route::get('/profile', 'UserController@editprofile')->middleware('auth');
+    Route::put('/emailupdate', 'UserController@emailupdate')->middleware('auth');
+    Route::put('/phoneupdate', 'UserController@phoneupdate')->middleware('auth');
+    Route::post('/passwordupdate', 'ChangePasswordController@store')->name('change.password');
+    Route::get('/addvehicle', function () {
+        return view('addvehicle');
+    })->middleware('auth');
+    Route::get('/addbalance', function () {
+        return view('addbalance');
+    })->middleware('auth');
+
+    //dummy bank route
+    Route::post('/bank', 'DummyBankController@bankTransaction');
+    Route::get('/bankaccept', 'BalanceController@accept')->name('transactionaccepted');
+});
+
 
 Route::group(['middleware' => 'admin'], function () {
     Route::get('/admin', 'LogController@adminview');

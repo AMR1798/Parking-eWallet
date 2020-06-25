@@ -13,7 +13,7 @@
                     <div class="align-self-center text-center col-sm-1"></div>
                     <div class="align-self-center text-center col-sm-7 border rounded mb-0 border-info">
                         <h1 class="robotofont"><strong>Uh Oh!</strong></h1>
-                        <h3> License plate you are looking for are not found in our system. </h3>
+                        <h3> License plate you are looking for is not found in our system. </h3>
                         <br>
                         <h3 style="color:#2F75E9" ><i class="robotofont"> Are you sure this vehicle is parked here? </i></h3>
                           <br>

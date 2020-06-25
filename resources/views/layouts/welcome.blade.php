@@ -99,7 +99,9 @@
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </button>
                             <div class="dropdown-menu dropdown-menu-center text-center">
+                                @if (Auth::user()->isAdmin == 0)
                                 <a class="dropdown-item" href="/home"> Home </a>
+                                @endif
                                 @if (Auth::user()->isAdmin == 1)
                                 <a class="dropdown-item" href="/admin"> Admin </a>
                                 @endif
